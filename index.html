@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏攻略大全 | Game Guide Hub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2007425330071723" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --bg: #0d1117;
+            --bg2: #161b22;
+            --bg3: #21262d;
+            --card: #1c2128;
+            --card-hover: #272e38;
+            --border: #30363d;
+            --text: #e6edf3;
+            --text2: #b0b8c4;
+            --text3: #6e7681;
+            --accent: #58a6ff;
+            --green: #3fb950;
+            --orange: #d2991d;
+            --red: #f85149;
+            --purple: #a371f7;
+            --cyan: #39d2c0;
+            --pink: #db61a2;
+            --sidebar-w: 260px;
+            --header-h: 56px;
+            --radius: 10px;
+            --radius-sm: 6px;
+            --transition: 0.2s ease;
+        }
+
+        *{margin:0;padding:0;box-sizing:border-box;}
+        html{scroll-behavior:smooth;scroll-padding-top:var(--header-h);}
+        body{
+            font-family:'Noto Sans SC','Segoe UI',sans-serif;
+            background:var(--bg);color:var(--text);
+            line-height:1.65;display:flex;min-height:100vh;
+        }
+
+        /* ===== SIDEBAR ===== */
+        .sidebar{
+            width:var(--sidebar-w);min-width:var(--sidebar-w);
+            background:var(--bg2);border-right:1px solid var(--border);
+            position:fixed;top:0;left:0;bottom:0;z-index:100;
+            display:flex;flex-direction:column;overflow:hidden;
+            transition:transform var(--transition);
+        }
+        .sidebar-logo{
+            height:var(--header-h);display:flex;align-items:center;gap:10px;
+            padding:0 18px;border-bottom:1px solid var(--border);
+            font-family:'Orbitron',sans-serif;font-weight:700;font-size:1rem;
+            color:var(--accent);flex-shrink:0;
+        }
+        .sidebar-logo .icon{font-size:1.4rem;}
+        .sidebar-nav{flex:1;overflow-y:auto;padding:8px 0;}
+        .sidebar-nav::-webkit-scrollbar{width:4px;}
+        .sidebar-nav::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+
+        .cat-title{
+            display:flex;align-items:center;gap:8px;padding:10px 18px;
+            font-size:0.82rem;font-weight:700;color:var(--text3);
+            text-transform:uppercase;letter-spacing:1px;cursor:pointer;
+            user-select:none;transition:var(--transition);
+        }
+        .cat-title:hover{color:var(--text2);}
+        .cat-title .arrow{font-size:0.7rem;transition:transform var(--transition);margin-left:auto;}
+        .cat-title.open .arrow{transform:rotate(90deg);}
+        .cat-items{overflow:hidden;max-height:0;transition:max-height 0.35s ease;}
+        .cat-items.open{max-height:600px;}
+
+        .game-link{
+            display:flex;align-items:center;gap:8px;padding:8px 18px 8px 36px;
+            font-size:0.88rem;color:var(--text2);cursor:pointer;
+            text-decoration:none;transition:var(--transition);
+            border-left:3px solid transparent;
+        }
+        .game-link:hover{color:var(--text);background:rgba(88,166,255,0.06);}
+        .game-link.active{color:var(--accent);background:rgba(88,166,255,0.1);border-left-color:var(--accent);}
+        .game-link .emoji{font-size:1rem;width:22px;text-align:center;}
+
+        /* ===== ADS ===== */
+        .ad-container{
+            display:flex;align-items:center;justify-content:center;
+            overflow:hidden;margin:0 auto;
+        }
+        .ad-sidebar{
+            padding:0 12px;flex-shrink:0;
+        }
+        .ad-sidebar .ad-label{
+            font-size:0.65rem;color:var(--text3);text-align:center;
+            letter-spacing:1px;text-transform:uppercase;margin:6px 0 4px;
+        }
+        .ad-top-banner{
+            width:100%;max-width:728px;min-height:90px;
+            margin-bottom:24px;background:var(--card);
+            border:1px solid var(--border);border-radius:var(--radius-sm);
+        }
+        .ad-top-banner .ad-label{
+            font-size:0.65rem;color:var(--text3);text-align:center;
+            letter-spacing:1px;text-transform:uppercase;padding-top:6px;
+        }
+        .ad-bottom{
+            width:100%;max-width:728px;min-height:90px;
+            margin-top:32px;padding-top:20px;
+            border-top:1px solid var(--border);
+        }
+        .ad-bottom .ad-label{
+            font-size:0.65rem;color:var(--text3);text-align:center;
+            letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;
+        }
+        .ad-in-article{
+            width:100%;max-width:336px;min-height:280px;
+            margin:20px auto;background:var(--card);
+            border:1px solid var(--border);border-radius:var(--radius-sm);
+        }
+        .ad-in-article .ad-label{
+            font-size:0.65rem;color:var(--text3);text-align:center;
+            letter-spacing:1px;text-transform:uppercase;padding-top:6px;
+        }
+        @media(max-width:500px){
+            .ad-top-banner,.ad-bottom{min-height:50px;}
+            .ad-in-article{min-height:250px;}
+        }
+
+        .sidebar-bottom{
+            padding:12px 18px;border-top:1px solid var(--border);
+            flex-shrink:0;display:flex;align-items:center;gap:10px;
+        }
+        .lang-btn{
+            flex:1;padding:8px 12px;border-radius:var(--radius-sm);
+            border:1px solid var(--border);background:var(--bg3);
+            color:var(--text2);cursor:pointer;font-size:0.82rem;
+            font-weight:600;transition:var(--transition);text-align:center;
+            font-family:inherit;
+        }
+        .lang-btn:hover{border-color:var(--accent);color:var(--accent);}
+
+        /* ===== MAIN ===== */
+        .main{
+            margin-left:var(--sidebar-w);flex:1;min-width:0;
+            padding-top:var(--header-h);
+        }
+        .topbar{
+            position:fixed;top:0;left:var(--sidebar-w);right:0;z-index:99;
+            height:var(--header-h);background:rgba(13,17,23,0.88);
+            backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+            border-bottom:1px solid var(--border);
+            display:flex;align-items:center;padding:0 24px;gap:12px;
+        }
+        .topbar .breadcrumb{font-size:0.85rem;color:var(--text3);}
+        .topbar .breadcrumb span{color:var(--accent);}
+        .topbar .search-wrap{
+            margin-left:auto;position:relative;
+        }
+        .topbar .search-wrap input{
+            width:200px;padding:7px 14px 7px 36px;border-radius:20px;
+            border:1px solid var(--border);background:var(--bg3);
+            color:var(--text);font-size:0.85rem;outline:none;
+            transition:var(--transition);font-family:inherit;
+        }
+        .topbar .search-wrap input:focus{width:260px;border-color:var(--accent);}
+        .topbar .search-wrap .search-icon{
+            position:absolute;left:12px;top:50%;transform:translateY(-50%);
+            color:var(--text3);font-size:0.85rem;pointer-events:none;
+        }
+        .menu-toggle{
+            display:none;background:none;border:none;
+            color:var(--text);font-size:1.4rem;cursor:pointer;padding:4px;
+        }
+
+        /* ===== CONTENT ===== */
+        .content{padding:32px 40px;max-width:1100px;}
+        .game-section{display:none;}
+        .game-section.active{display:block;}
+        .page-hero{
+            margin-bottom:36px;padding-bottom:28px;
+            border-bottom:1px solid var(--border);
+        }
+        .page-hero .game-icon{font-size:4rem;display:block;margin-bottom:16px;}
+        .page-hero h1{
+            font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:900;
+            margin-bottom:6px;
+        }
+        .page-hero .en-name{font-size:1rem;color:var(--text3);margin-bottom:12px;}
+        .page-hero .desc{color:var(--text2);font-size:0.95rem;max-width:700px;}
+
+        /* Tabs */
+        .tab-bar{display:flex;gap:4px;margin-bottom:28px;flex-wrap:wrap;}
+        .tab-btn{
+            padding:10px 22px;border-radius:var(--radius-sm);border:none;
+            background:var(--card);color:var(--text2);cursor:pointer;
+            font-size:0.9rem;font-weight:600;transition:var(--transition);
+            font-family:inherit;
+        }
+        .tab-btn:hover{color:var(--text);background:var(--card-hover);}
+        .tab-btn.active{background:var(--accent);color:#fff;}
+        .tab-panel{display:none;}
+        .tab-panel.active{display:block;}
+
+        /* Cards */
+        .article-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:16px;}
+        .article-card{
+            background:var(--card);border:1px solid var(--border);
+            border-radius:var(--radius);padding:20px 22px;
+            transition:var(--transition);cursor:pointer;display:block;
+            text-decoration:none;color:inherit;
+        }
+        .article-card:hover{
+            background:var(--card-hover);border-color:var(--accent);
+            transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,0.3);
+        }
+        .article-card .tag{
+            display:inline-block;padding:2px 10px;border-radius:12px;
+            font-size:0.7rem;font-weight:700;margin-bottom:10px;
+            letter-spacing:0.5px;
+        }
+        .tag.beginner{background:rgba(63,185,80,0.15);color:var(--green);}
+        .tag.core{background:rgba(88,166,255,0.15);color:var(--accent);}
+        .tag.longtail{background:rgba(163,113,247,0.15);color:var(--purple);}
+        .article-card h4{font-size:0.95rem;font-weight:600;margin-bottom:6px;line-height:1.5;}
+        .article-card .excerpt{font-size:0.82rem;color:var(--text3);}
+
+        /* Game meta */
+        .game-meta{
+            display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;
+        }
+        .meta-chip{
+            padding:4px 14px;border-radius:16px;font-size:0.78rem;
+            background:var(--bg3);color:var(--text2);border:1px solid var(--border);
+        }
+
+        /* Expandable detail */
+        .detail-modal{
+            display:none;position:fixed;inset:0;z-index:200;
+            background:rgba(0,0,0,0.7);align-items:center;justify-content:center;
+        }
+        .detail-modal.open{display:flex;}
+        .detail-content{
+            background:var(--bg2);border:1px solid var(--border);border-radius:var(--radius);
+            width:90%;max-width:700px;max-height:80vh;overflow-y:auto;
+            padding:32px;position:relative;
+        }
+        .detail-close{
+            position:absolute;top:12px;right:16px;
+            background:none;border:none;color:var(--text3);
+            font-size:1.4rem;cursor:pointer;transition:var(--transition);
+        }
+        .detail-close:hover{color:var(--red);}
+        .detail-content h3{font-size:1.3rem;margin-bottom:8px;}
+        .detail-content .detail-tag{margin-bottom:16px;}
+        .detail-content .detail-body{color:var(--text2);line-height:1.8;}
+        .detail-content .detail-body ul{padding-left:20px;margin:12px 0;}
+        .detail-content .detail-body li{margin:6px 0;}
+
+        /* Responsive */
+        @media(max-width:900px){
+            .sidebar{transform:translateX(-100%);}
+            .sidebar.open{transform:translateX(0);}
+            .main{margin-left:0;}
+            .topbar{left:0;}
+            .menu-toggle{display:block;}
+            .content{padding:24px 20px;}
+            .article-grid{grid-template-columns:1fr;}
+        }
+        @media(max-width:500px){
+            .tab-btn{padding:8px 14px;font-size:0.82rem;}
+            .page-hero h1{font-size:1.5rem;}
+            .topbar .search-wrap input{width:120px;}
+            .topbar .search-wrap input:focus{width:160px;}
+        }
+    </style>
+</head>
+<body>
+
+<!-- ==================== SIDEBAR ==================== -->
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+        <span class="icon">🎮</span>
+        <span data-zh="游戏攻略大全" data-en="Game Guides">游戏攻略大全</span>
+    </div>
+    <nav class="sidebar-nav" id="sidebarNav">
+        <!-- Generated by JS -->
+    </nav>
+    <!-- 侧边栏广告 -->
+    <div class="ad-container ad-sidebar">
+        <div>
+            <div class="ad-label">广告</div>
+            <ins class="adsbygoogle"
+                 style="display:block;width:200px;height:200px"
+                 data-ad-client="ca-pub-2007425330071723"
+                 data-ad-slot="5095945395"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        </div>
+    </div>
+    <div class="sidebar-bottom">
+        <button class="lang-btn" id="langToggle">🌐 English</button>
+    </div>
+</aside>
+
+<!-- ==================== MAIN ==================== -->
+<div class="main" id="main">
+    <div class="topbar">
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <div class="breadcrumb" id="breadcrumb"><span data-zh="首页" data-en="Home">首页</span></div>
+        <div class="search-wrap">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" data-zh-placeholder="搜索攻略..." data-en-placeholder="Search guides..." placeholder="搜索攻略...">
+        </div>
+    </div>
+    <div class="content" id="contentArea">
+        <!-- Generated by JS -->
+    </div>
+</div>
+
+<!-- ==================== MODAL ==================== -->
+<div class="detail-modal" id="detailModal">
+    <div class="detail-content" id="detailContent"></div>
+</div>
+
+<script>
+// ==================== DATA ====================
+const gameData = [
+    // ========= 模拟经营 =========
+    {
+        id:'stardew', emoji:'🌾',
+        zh:'星露谷物语', en:'Stardew Valley',
+        cat:'sim', catZh:'模拟经营', catEn:'Simulation',
+        descZh:'从城市到乡村，打造你的梦想农场。耕种、采矿、钓鱼、交友，体验最治愈的田园生活。',
+        descEn:'Escape the city and build your dream farm. Farm, mine, fish, befriend villagers — the ultimate cozy life sim.',
+        metaZh:['ConcernedApe','单机/联机','农耕模拟','全平台'], metaEn:['ConcernedApe','Single/Multi','Farming Sim','All Platforms'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'星露谷物语新手开局第一天详细攻略',en:'Day 1 Beginner Guide — Complete Walkthrough',exZh:'第一天最优化流程：清理农场、种植防风草、认识村民、收集材料，最大化第一天收益。',exEn:'Optimize Day 1: clear farm, plant parsnips, meet villagers, gather resources for maximum efficiency.',detailZh:'<p>第一天的行动至关重要，合理安排可以让你领先至少3-5天的进度。</p><ul><li><b>清理农场：</b>用镰刀清除杂草（不耗体力），用斧头砍树枝，保留所有木材和石头。</li><li><b>种植防风草：</b>皮埃尔商店购买15个防风草种子，全部种下并浇水。</li><li><b>认识村民：</b>在镇中心广场与28位村民对话，完成"Introductions"任务获得100g。</li><li><b>采集：</b>沿途收集野葱、蒲公英、韭葱等春季采集物，卖掉换金币。</li><li><b>钓鱼初体验：</b>收到威利的钓鱼竿后，去山湖练习钓鱼，鱼可以卖钱或补充体力。</li><li><b>睡前准备：</b>把背包里所有东西整理好，多余体力砍树或钓鱼，不要浪费任何体力。</li></ul>',detailEn:'<p>Your first day sets the pace for the entire game. A good Day 1 can put you 3-5 days ahead.</p><ul><li><b>Clear farm:</b> Use scythe on weeds (no energy cost), chop branches with axe. Save all wood and stone.</li><li><b>Plant Parsnips:</b> Buy 15 seeds from Pierre\'s, plant and water all of them.</li><li><b>Meet villagers:</b> Talk to 28 NPCs in town square to complete "Introductions" quest for 100g.</li><li><b>Forage:</b> Collect Spring Onions, Dandelions, Leeks along the way. Sell for gold.</li><li><b>Try fishing:</b> After getting Willy\'s rod, practice at Mountain Lake. Fish = money + energy food.</li><li><b>Before bed:</b> Organize inventory. Use remaining energy to chop trees or fish. Never waste energy.</li></ul>'},
+                {tag:'beginner',zh:'星露谷物语中文设置及存档位置说明',en:'Language Settings & Save File Location',exZh:'Steam/WeGame/GOG各平台中文设置方法，以及不同系统的存档路径说明。',exEn:'How to set Chinese language on Steam/WeGame/GOG, plus save file locations for all OS.',detailZh:'<p><b>中文设置：</b></p><ul><li>Steam：库→右键星露谷→属性→语言→简体中文</li><li>WeGame：游戏设置→语言选择</li><li>GOG：设置→语言选项</li><li>游戏内：主菜单→设置（齿轮图标）→语言</li></ul><p><b>存档位置：</b></p><ul><li>Windows: %APPDATA%/StardewValley/Saves/</li><li>Mac: ~/.config/StardewValley/Saves/</li><li>Linux: ~/.config/StardewValley/Saves/</li><li>每个存档是一个以角色名+随机数命名的文件夹</li></ul>',detailEn:'<p><b>Language Settings:</b></p><ul><li>Steam: Library → Right-click SV → Properties → Language → Simplified Chinese</li><li>WeGame: Game Settings → Language</li><li>GOG: Settings → Language Options</li><li>In-game: Main Menu → Settings (gear icon) → Language</li></ul><p><b>Save Locations:</b></p><ul><li>Windows: %APPDATA%/StardewValley/Saves/</li><li>Mac: ~/.config/StardewValley/Saves/</li><li>Linux: ~/.config/StardewValley/Saves/</li><li>Each save is a folder named with character name + random digits</li></ul>'},
+                {tag:'beginner',zh:'星露谷物语最低配置要求及闪退常见问题解决',en:'System Requirements & Crash Fixes',exZh:'最低/推荐配置一览，闪退、黑屏、存档损坏等常见问题的解决方法汇总。',exEn:'Min/recommended specs, crash/black screen/corrupt save fixes.',detailZh:'<p><b>最低配置：</b>CPU 2Ghz / RAM 2GB / GPU 256MB显存 / 硬盘 500MB</p><p><b>推荐配置：</b>CPU 2Ghz+ / RAM 4GB / GPU 512MB+</p><p><b>常见问题：</b></p><ul><li><b>闪退：</b>更新显卡驱动，关闭杀毒软件，以管理员身份运行</li><li><b>黑屏：</b>删除启动选项中的兼容性设置，验证游戏完整性</li><li><b>存档损坏：</b>Saves文件夹内有_old备份，重命名即可恢复</li><li><b>MOD冲突：</b>更新SMAPI，逐个禁用MOD排查</li></ul>',detailEn:'<p><b>Minimum:</b> CPU 2Ghz / RAM 2GB / GPU 256MB VRAM / 500MB storage</p><p><b>Recommended:</b> CPU 2Ghz+ / RAM 4GB / GPU 512MB+</p><p><b>Common fixes:</b></p><ul><li><b>Crash:</b> Update GPU drivers, disable antivirus, run as admin</li><li><b>Black screen:</b> Remove compatibility settings, verify game files</li><li><b>Corrupt save:</b> Rename _old backup folder in Saves directory</li><li><b>MOD issues:</b> Update SMAPI, disable MODs one by one to find culprit</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'星露谷物语春季作物推荐 最赚钱作物排行',en:'Spring Crop Guide — Most Profitable Ranking',exZh:'土豆、草莓、甘蓝、蓝爵收益对比，春季种什么最赚钱？附蛋蛋节草莓购买策略。',exEn:'Potato vs Strawberry vs Kale profit comparison. What to plant in Spring + Egg Festival strategy.',detailZh:'<p><b>春季最强作物：草莓</b>（蛋蛋节购买，100g/种子，售价120g+，持续收获）</p><p><b>常规推荐：</b></p><ul><li>🥇 草莓 — 日收益约20g/天，只限蛋蛋节购买</li><li>🥈 土豆 — 日收益约8.3g/天，有概率多收</li><li>🥉 甘蓝 — 日收益约6.7g/天，经验值高</li><li>4. 绿豆 — 日收益约5.6g/天，持续收获</li></ul><p><b>策略：</b>蛋蛋节前种土豆积累资金，蛋蛋节把所有钱买草莓种子。留几个草莓做种子制造机，第二年大量种植。</p>',detailEn:'<p><b>Spring MVP: Strawberry</b> (Egg Festival purchase, 100g/seed, 120g+ sell, regrows)</p><p><b>Ranking:</b></p><ul><li>🥇 Strawberry — ~20g/day, Egg Festival exclusive</li><li>🥈 Potato — ~8.3g/day, chance for extra yield</li><li>🥉 Kale — ~6.7g/day, high XP</li><li>4. Green Bean — ~5.6g/day, regrows</li></ul><p><b>Strategy:</b> Plant potatoes before Egg Festival, spend all gold on strawberries at festival. Save a few for Seed Maker for Year 2 mass planting.</p>'},
+                {tag:'core',zh:'星露谷物语全村民喜好表 好感度提升攻略',en:'Complete Villager Gift Guide — Friendship Tips',exZh:'30+位村民最爱/喜欢/讨厌的礼物清单，好感度快速提升方法，生日送礼×8倍效果！',exEn:'30+ villagers loved/liked/hated gifts. Fast friendship methods. Birthday gifts = ×8 effect!',detailZh:'<p><b>快速提升好感度的方法：</b></p><ul><li>🎂 <b>生日送礼：</b>效果×8倍！务必记住所有村民生日</li><li>⭐ <b>高品质礼物：</b>铱星品质的礼物效果×1.5</li><li>🎄 <b>冬日星盛宴：</b>给秘密朋友送礼效果×5</li><li>📋 <b>公告栏任务：</b>完成可获得150好感度</li></ul><p><b>通用最爱礼物：</b>七彩碎片（除海莉）、兔子脚（所有人）、珍珠（除潘妮）</p>',detailEn:'<p><b>Fast friendship methods:</b></p><ul><li>🎂 <b>Birthday gifts:</b> ×8 effect! Track all birthdays</li><li>⭐ <b>Quality gifts:</b> Iridium quality = ×1.5 effect</li><li>🎄 <b>Feast of Winter Star:</b> Secret friend gift = ×5</li><li>📋 <b>Help Wanted quests:</b> Complete for 150 friendship</li></ul><p><b>Universal loves:</b> Prismatic Shard (except Haley), Rabbit\'s Foot (everyone), Pearl (except Penny)</p>'},
+                {tag:'core',zh:'星露谷物语社区中心全献祭任务完成指南',en:'Community Center Bundle Completion Guide',exZh:'6大房间全部收集包一览，所需物品清单及获取方式，按季节推荐完成顺序。',exEn:'All 6 room bundles, required items & how to get them. Recommended completion order by season.',detailZh:'<p><b>推荐完成顺序：</b></p><ul><li>1. 🔨 工艺室（采集）→ 修复采石场旁桥梁</li><li>2. 🔥 锅炉室（采矿）→ 修复矿车，快速旅行</li><li>3. 🥕 食品储藏室（农耕）→ 修复温室！全年种植</li><li>4. 💰 金库 → 巴士站修复，解锁沙漠</li><li>5. 🐟 鱼缸 → 移除矿洞旁巨石</li><li>6. 📋 公告栏 → 全体村民+2❤️</li></ul><p>温室是第一年最重要的目标，尽量秋季前完成食品储藏室！</p>',detailEn:'<p><b>Recommended order:</b></p><ul><li>1. 🔨 Crafts Room → Repair bridge near quarry</li><li>2. 🔥 Boiler Room → Repair minecarts, fast travel</li><li>3. 🥕 Pantry → Repair greenhouse! Year-round crops</li><li>4. 💰 Vault → Bus repair, unlock desert</li><li>5. 🐟 Fish Tank → Remove boulder near mines</li><li>6. 📋 Bulletin Board → +2❤️ all villagers</li></ul><p>Greenhouse is the #1 Year 1 priority — finish Pantry before Fall if possible!</p>'},
+                {tag:'core',zh:'星露谷物语钓鱼技巧大全 各季节鱼王位置',en:'Fishing Guide — Legendary Fish & Tips',exZh:'5大传奇鱼位置+条件，钓鱼技巧详解，各季节全鱼种出现时间与地点。',exEn:'5 legendary fish locations & conditions. Fishing techniques. All seasonal fish time/location.',detailZh:'<p><b>五大传奇鱼（每存档只能钓一次）：</b></p><ul><li>🐟 传说之鱼 — 春季·山湖·雨天·钓鱼10级以上</li><li>🐠 变异鲤鱼 — 全年·下水道·无特殊条件</li><li>🦑 绯红鱼 — 夏季·海滩东侧码头</li><li>🐡 安康鱼 — 秋季·小镇河·钓鱼3级以上</li><li>🐋 冰河鱼 — 冬季·煤森林河流南端</li></ul><p><b>高级技巧：</b>陷阱浮标减慢鱼逃跑速度；食用海之菜肴(+3钓鱼)；高幸运日更容易钓到稀有鱼。</p>',detailEn:'<p><b>5 Legendary Fish (once per save):</b></p><ul><li>🐟 Legend — Spring·Mountain Lake·Rain·Fishing 10+</li><li>🐠 Mutant Carp — Any season·Sewer</li><li>🦑 Crimsonfish — Summer·East Pier on Beach</li><li>🐡 Angler — Fall·Town River·Fishing 3+</li><li>🐋 Glacierfish — Winter·South Cindersap Forest River</li></ul><p><b>Pro tips:</b> Trap Bobber slows escape; Dish o\' the Sea (+3 Fishing); high luck days increase rare fish chance.</p>'},
+                {tag:'core',zh:'星露谷物语农场布局方案 新手最优布局推荐',en:'Farm Layout Guide — Best Beginner Designs',exZh:'标准农场/河边农场/森林农场布局设计，洒水器高效排列方案，建筑位置推荐。',exEn:'Standard/River/Forest farm designs. Efficient sprinkler layouts. Building placement tips.',detailZh:'<p><b>推荐新手农场类型：标准农场</b>（面积最大，布局灵活）</p><p><b>洒水器布局：</b></p><ul><li>🎯 中级洒水器覆盖8格（3×3去掉四角）</li><li>🎯 铱洒水器覆盖24格（5×5），终极目标</li><li>🎯 稻草人覆盖半径8格，每16×16区域放一个</li></ul><p><b>建筑区：</b>畜棚和鸡舍放在农场下方靠近草地，筒仓建在畜棚旁边。果树种在温室周围。</p>',detailEn:'<p><b>Best beginner farm: Standard Farm</b> (largest area, flexible layout)</p><p><b>Sprinkler layouts:</b></p><ul><li>🎯 Quality Sprinkler covers 8 tiles (3×3 minus corners)</li><li>🎯 Iridium Sprinkler covers 24 tiles (5×5), endgame goal</li><li>🎯 Scarecrow covers 8-tile radius, one per 16×16 area</li></ul><p><b>Buildings:</b> Barns/Coops near bottom close to grass. Silos next to animal buildings. Fruit trees around greenhouse.</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'星露谷物语 MOD 安装及排序详细教程',en:'MOD Installation & Load Order Guide',exZh:'SMAPI安装、Nexus MOD下载、Content Patcher使用、MOD排序工具及冲突排查。',exEn:'SMAPI setup, Nexus MODs download, Content Patcher usage, load order & conflict resolution.',detailZh:'<p><b>安装步骤：</b></p><ul><li>1. 下载并安装SMAPI（Stardew Modding API）</li><li>2. 运行一次游戏确保SMAPI正常工作</li><li>3. 下载MOD放入Mods文件夹</li><li>4. 使用Generic Mod Config Menu调整设置</li></ul><p><b>必备MOD推荐：</b>UI Info Suite、Chests Anywhere、Automate、Lookup Anything、NPC Map Locations</p>',detailEn:'<p><b>Installation:</b></p><ul><li>1. Download and install SMAPI (Stardew Modding API)</li><li>2. Run game once to verify SMAPI works</li><li>3. Download MODs into Mods folder</li><li>4. Use Generic Mod Config Menu to adjust settings</li></ul><p><b>Essential MODs:</b> UI Info Suite, Chests Anywhere, Automate, Lookup Anything, NPC Map Locations</p>'},
+                {tag:'longtail',zh:'星露谷物语全成就解锁条件汇总',en:'All Achievements Unlock Guide',exZh:'40个Steam成就完整列表及解锁条件，最难成就完成技巧。',exEn:'Complete list of 40 Steam achievements with unlock conditions. Hardest achievement strategies.',detailZh:'<p>共40个成就，分为采集、农耕、钓鱼、采矿、战斗、社交等类别。最难的几个：</p><ul><li>🏆 <b>草原之王：</b>通关草原之王之旅小游戏且不死亡</li><li>🏆 <b>全额出货：</b>每种作物和采集物卖出15个</li><li>🏆 <b>烹饪大师：</b>制作所有料理（共80+种）</li><li>🏆 <b>工艺大师：</b>制作所有物品</li></ul><p>建议对照Wiki逐项完成，使用"Stardew Checkup"网站追踪进度。</p>',detailEn:'<p>40 achievements total. Hardest ones:</p><ul><li>🏆 <b>Fector\'s Challenge:</b> Beat Journey of the Prairie King without dying</li><li>🏆 <b>Polyculture:</b> Ship 15 of each crop</li><li>🏆 <b>Gourmet Chef:</b> Cook every recipe (80+)</li><li>🏆 <b>Craft Master:</b> Craft every item</li></ul><p>Use the wiki checklist and "Stardew Checkup" website to track progress.</p>'},
+            ]}
+        ]
+    },
+
+    // ========= 戴森球计划 =========
+    {
+        id:'dyson', emoji:'🌌',
+        zh:'戴森球计划', en:'Dyson Sphere Program',
+        cat:'sim', catZh:'模拟经营', catEn:'Simulation',
+        descZh:'从一颗星球开始，建立跨星系的自动化工厂，最终建造包裹恒星的戴森球。国产科幻模拟经营神作。',
+        descEn:'Start from one planet, build an interstellar automated factory, and ultimately construct a Dyson Sphere around a star. A Chinese sci-fi simulation masterpiece.',
+        metaZh:['Youthcat Studio','单机','自动化工厂','PC'], metaEn:['Youthcat Studio','Single Player','Automation','PC'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'戴森球计划新手开局流程攻略 前10小时发展思路',en:'First 10 Hours Beginner Guide',exZh:'从降落母星到建立蓝糖产线，前10小时关键节点与资源管理策略。',exEn:'From landing to Blue Science production — key milestones and resource management for first 10 hours.',detailZh:'<p><b>前10小时关键节点：</b></p><ul><li><b>第0-2小时：</b>采集基础资源（铁、铜、石、煤），建造采矿机覆盖矿脉</li><li><b>第2-4小时：</b>建立基础冶炼线，解锁蓝糖科技，开始研究</li><li><b>第4-7小时：</b>铺设传送带网络，建立蓝糖自动化产线</li><li><b>第7-10小时：</b>解锁红糖科技，开始星际航行准备</li></ul><p><b>核心原则：</b>不要手搓！任何需要超过50个的物品都应该自动化生产。</p>',detailEn:'<p><b>First 10 hours milestones:</b></p><ul><li><b>0-2h:</b> Gather basic resources (iron, copper, stone, coal), place miners on veins</li><li><b>2-4h:</b> Build smelting lines, unlock Blue Science, start research</li><li><b>4-7h:</b> Lay conveyor networks, automate Blue Science production</li><li><b>7-10h:</b> Unlock Red Science, prepare for interstellar travel</li></ul><p><b>Core rule:</b> Don\'t hand-craft! Automate anything you need more than 50 of.</p>'},
+                {tag:'beginner',zh:'戴森球计划存档位置及配置要求说明',en:'Save Location & System Requirements',exZh:'各平台存档路径说明，最低/推荐配置要求一览。',exEn:'Save file locations for all platforms, min/recommended specs.',detailZh:'<p><b>存档位置：</b>Documents/Dyson Sphere Program/Save/</p><p><b>最低配置：</b>i3-530 / 4GB RAM / GTX 750 / 3GB硬盘</p><p><b>推荐配置：</b>i7-7700 / 16GB RAM / GTX 1060 6GB / SSD 10GB</p><p>后期产线庞大时对CPU要求很高，建议使用高性能处理器。</p>',detailEn:'<p><b>Save location:</b> Documents/Dyson Sphere Program/Save/</p><p><b>Minimum:</b> i3-530 / 4GB RAM / GTX 750 / 3GB storage</p><p><b>Recommended:</b> i7-7700 / 16GB RAM / GTX 1060 6GB / SSD 10GB</p><p>Late game requires strong CPU due to massive production lines.</p>'},
+                {tag:'beginner',zh:'戴森球计划常见闪退、卡顿问题解决方法',en:'Crash & Lag Fix Guide',exZh:'游戏闪退、帧率过低、存档加载失败等常见问题排查方案。',exEn:'Crash, low FPS, save loading failure — troubleshooting guide.',detailZh:'<p><b>常见问题解决：</b></p><ul><li><b>后期卡顿：</b>降低画质设置，分散产线到不同星球，使用物流塔替代长传送带</li><li><b>闪退：</b>更新显卡驱动，关闭后台程序，增加虚拟内存至16GB+</li><li><b>存档损坏：</b>Save文件夹内有自动备份，重命名.restore文件即可</li></ul>',detailEn:'<p><b>Fixes:</b></p><ul><li><b>Late game lag:</b> Lower graphics, spread production across planets, use logistics stations instead of long belts</li><li><b>Crashes:</b> Update GPU drivers, close background apps, increase virtual memory to 16GB+</li><li><b>Corrupt save:</b> Auto-backups in Save folder, rename .restore files</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'戴森球计划科技树解锁顺序 新手优先研究推荐',en:'Tech Tree Priority Guide',exZh:'蓝糖→红糖→黄糖→紫糖→绿糖→白糖，各阶段优先解锁的关键科技。',exEn:'Blue→Red→Yellow→Purple→Green→White science. Key techs to unlock at each stage.',detailZh:'<p><b>科技解锁优先级：</b></p><ul><li>🔵 <b>蓝糖阶段：</b>基础物流→电磁学→基础制造→冶炼升级</li><li>🔴 <b>红糖阶段：</b>星际航行→物流塔→传送带升级</li><li>🟡 <b>黄糖阶段：</b>星际物流塔→钛晶石→推进器</li><li>🟣 <b>紫糖阶段：</b>粒子宽带→戴森球节点→射线接收站</li><li>🟢 <b>绿糖阶段：</b>翘曲器→引力透镜→空间翘曲</li></ul>',detailEn:'<p><b>Tech priorities:</b></p><ul><li>🔵 <b>Blue:</b> Basic Logistics→Electromagnetism→Basic Manufacturing→Smelting Upgrade</li><li>🔴 <b>Red:</b> Interstellar Travel→Logistics Station→Belt Upgrades</li><li>🟡 <b>Yellow:</b> Interstellar Logistics Station→Titanium Crystal→Thruster</li><li>🟣 <b>Purple:</b> Particle Broadband→Dyson Sphere Node→Ray Receiver</li><li>🟢 <b>Green:</b> Warper→Graviton Lens→Space Warper</li></ul>'},
+                {tag:'core',zh:'戴森球计划新手生产线布局 自动化基础方案',en:'Production Line Layout — Automation Basics',exZh:'从手搓到全自动，基础冶炼线→电路板产线→处理器产线，逐步升级布局方案。',exEn:'From handcrafting to full automation. Smelting→Circuit Board→Processor production layouts.',detailZh:'<p><b>基础布局原则：</b></p><ul><li>📐 总线式布局：主传送带+分支产线</li><li>📐 模块化设计：每种产品独立模块，便于扩展</li><li>📐 预留空间：每条产线之间留3-5格通道</li></ul><p><b>经典布局示例：</b>铁矿→铁板→齿轮+电路板→蓝糖；铜矿→铜板→线圈→电路板</p>',detailEn:'<p><b>Layout principles:</b></p><ul><li>📐 Bus system: main belt + branch production</li><li>📐 Modular design: each product as independent module, easy to expand</li><li>📐 Leave space: 3-5 tile corridors between production lines</li></ul><p><b>Classic layout:</b> Iron ore→Iron plates→Gears+Circuit Boards→Blue Science; Copper ore→Copper plates→Coils→Circuit Boards</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'戴森球计划蓝图使用及导入导出教程',en:'Blueprint System Tutorial',exZh:'蓝图创建保存、粘贴使用、跨存档导入导出，社区优秀蓝图推荐。',exEn:'Blueprint creation, paste usage, cross-save import/export. Community blueprint recommendations.',detailZh:'<p>蓝图系统允许复制粘贴建筑布局，大幅提高建造效率。可以保存自己的设计或从社区下载优秀蓝图。</p>',detailEn:'<p>The blueprint system lets you copy-paste building layouts, dramatically improving construction speed. Save your own designs or download from the community.</p>'},
+                {tag:'longtail',zh:'戴森球计划全成就解锁条件一览',en:'All Achievements Guide',exZh:'完整成就列表及达成条件，最稀有的几个成就获取策略。',exEn:'Complete achievement list with conditions. Strategies for rarest achievements.',detailZh:'<p>涵盖生产、探索、建造等各类成就。其中最难的包括"戴森球完成"和"每分钟产出目标"类成就。</p>',detailEn:'<p>Covers production, exploration, construction achievements. Hardest include "Dyson Sphere Complete" and "per-minute production targets".</p>'},
+            ]}
+        ]
+    },
+
+    // ========= 牧场物语 =========
+    {
+        id:'harvest', emoji:'🐄',
+        zh:'牧场物语 重聚矿石镇', en:'Story of Seasons: Friends of Mineral Town',
+        cat:'sim', catZh:'模拟经营', catEn:'Simulation',
+        descZh:'经典牧场经营游戏重制版，回到矿石镇经营农场，与村民相处，探索矿洞，体验温馨的乡村生活。',
+        descEn:'Remake of the classic farming sim. Return to Mineral Town to run your farm, befriend villagers, explore mines, and enjoy cozy rural life.',
+        metaZh:['Marvelous','单机','经典重制','全平台'], metaEn:['Marvelous','Single Player','Classic Remake','All Platforms'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'牧场物语矿石镇新手开局攻略 第一年发展规划',en:'Year 1 Development Guide',exZh:'第一年四季种植计划、动物购买时机、矿洞探索策略，最大化第一年收益。',exEn:'Year 1 seasonal planting, animal purchase timing, mining strategy — maximize first year profits.',detailZh:'<p><b>第一年规划：</b></p><ul><li>春：种芜菁积累资金，攒钱买背包升级</li><li>夏：种菠萝（21天成熟但收益最高），开始养鸡</li><li>秋：种红薯，升级工具，深入矿洞</li><li>冬：挖矿为主，采集湖矿场的矿石</li></ul>',detailEn:'<p><b>Year 1 plan:</b></p><ul><li>Spring: Plant Turnips for cash, save for backpack upgrade</li><li>Summer: Plant Pineapples (21 days but highest profit), start raising chickens</li><li>Fall: Plant Sweet Potatoes, upgrade tools, mine deeper</li><li>Winter: Focus on mining, gather ores from Lake Mine</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'牧场物语矿石镇作物种植时间表 四季作物收益排行',en:'Crop Calendar & Profit Ranking',exZh:'四季全部可种植作物一览，各作物生长天数、售价、日收益对比。',exEn:'All seasonal crops, growth days, sell prices, and daily profit comparison.',detailZh:'<p>春季推荐芜菁（低成本快回报），夏季推荐菠萝（高利润），秋季推荐红薯（持续收获），冬季无法种植。</p>',detailEn:'<p>Spring: Turnips (low cost, fast return). Summer: Pineapples (high profit). Fall: Sweet Potatoes (regrows). Winter: no outdoor planting.</p>'},
+                {tag:'core',zh:'牧场物语矿石镇村民喜好大全 好感度提升攻略',en:'Villager Gift Guide',exZh:'全村民最爱礼物清单，生日送礼×5好感度，可婚角色心动条件。',exEn:'All villager loved gifts. Birthday gifts = ×5 friendship. Marriage candidate heart conditions.',detailZh:'<p>每个村民有独特的礼物喜好，生日当天送礼效果×5。持续送礼和对话是提升好感度的主要方式。</p>',detailEn:'<p>Each villager has unique gift preferences. Birthday gifts get ×5 effect. Consistent gifting and talking are the main ways to raise friendship.</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'牧场物语矿石镇结婚条件及全候选人心动事件',en:'Marriage Guide & Heart Events',exZh:'12位可婚角色的心动事件触发条件，结婚所需好感度和房屋条件。',exEn:'Heart event triggers for 12 marriage candidates. Friendship & house requirements for marriage.',detailZh:'<p>结婚需要好感度达到红心（10❤️），拥有大床，触发所有心动事件后使用青色羽毛求婚。</p>',detailEn:'<p>Marriage requires red heart (10❤️), big bed, all heart events triggered, then propose with Blue Feather.</p>'},
+                {tag:'longtail',zh:'牧场物语矿石镇全节日活动时间及奖励',en:'Festival Schedule & Rewards',exZh:'全年所有节日日期、参与方式、比赛技巧、珍贵奖励一览。',exEn:'All festival dates, participation guide, contest tips, and valuable rewards.',detailZh:'<p>春1新年、春14感恩节、春18赛马节等，每个季节都有多个节日活动可以参加获取奖励。</p>',detailEn:'<p>Spring 1 New Year, Spring 14 Thanksgiving, Spring 18 Horse Race etc. Every season has multiple festivals with rewards.</p>'},
+            ]}
+        ]
+    },
+
+    // ========= 饥荒 =========
+    {
+        id:'dontstarve', emoji:'🔥',
+        zh:'饥荒联机版', en:'Don\'t Starve Together',
+        cat:'survival', catZh:'生存建造', catEn:'Survival & Building',
+        descZh:'在诡异的荒野中生存！采集资源、建造基地、对抗四季变化和强大BOSS，与朋友一起活下来。',
+        descEn:'Survive in a strange wilderness! Gather resources, build bases, fight seasonal changes and powerful bosses with friends.',
+        metaZh:['Klei','联机/单机','生存','全平台'], metaEn:['Klei','Multi/Single','Survival','All Platforms'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'饥荒联机版新手开局生存指南 第一天必做事项',en:'Day 1 Survival Checklist',exZh:'第一天最优行动顺序：收集燧石、树枝、干草→制作工具→寻找建家位置→建立篝火。',exEn:'Day 1 optimal order: collect flint, twigs, grass→craft tools→find base location→build campfire.',detailZh:'<p><b>第一天必做清单：</b></p><ul><li>1. 收集燧石×2+树枝×4→制作镐子和斧头</li><li>2. 砍树获取原木，挖矿获取石头和燧石</li><li>3. 沿途收集浆果和胡萝卜补充饥饿</li><li>4. 天黑前找到建家地点，造篝火和科学机器</li><li>5. 制作背包、铲子、长矛，为第二天做准备</li></ul>',detailEn:'<p><b>Day 1 checklist:</b></p><ul><li>1. Collect 2 flint + 4 twigs → craft pickaxe and axe</li><li>2. Chop trees for logs, mine rocks for stone and flint</li><li>3. Gather berries and carrots to manage hunger</li><li>4. Find base location before dark, build campfire + science machine</li><li>5. Craft backpack, shovel, spear for Day 2</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'饥荒联机版全角色强度排行 新手选什么角色好',en:'Character Tier List — Best for Beginners',exZh:'威尔逊、温蒂、薇克巴顿等全角色实力分析，新手推荐角色及上手难度。',exEn:'Wilson, Wendy, Wickerbottom — all character analysis. Best picks for new players.',detailZh:'<p><b>新手推荐：</b>威尔逊（全能平衡）> 温蒂（阿比盖尔清小怪）> 薇洛（免疫火焰+打火机）> 薇格弗德（战斗向）</p><p>避免新手使用：韦斯（故意弱）、沃拓克斯（灵魂机制复杂）</p>',detailEn:'<p><b>Best for beginners:</b> Wilson (all-rounder) > Wendy (Abigail kills mobs) > Willow (fire immune + lighter) > Wigfrid (combat focus)</p><p>Avoid as beginner: Wes (intentionally weak), Wortox (complex soul mechanics).</p>'},
+                {tag:'core',zh:'饥荒联机版食谱大全 高属性食物配方汇总',en:'Complete Food Recipe Guide',exZh:'全料理配方表，回血/回精神/回饥饿最佳食物推荐，烹饪锅使用技巧。',exEn:'All food recipes. Best HP/sanity/hunger foods. Crock Pot usage tips.',detailZh:'<p><b>最佳食物推荐：</b></p><ul><li>🥩 <b>肉丸：</b>任意肉×1+填充物×3，回饥饿62.5，性价比最高</li><li>🥧 <b>波兰水饺：</b>蛋+肉+蔬菜+填充物，回血40，战斗必备</li><li>🥞 <b>薄煎饼：</b>蝶翼+蔬菜+树枝×2，回血20+精神5</li></ul>',detailEn:'<p><b>Best foods:</b></p><ul><li>🥩 <b>Meatballs:</b> 1 meat + 3 filler, +62.5 hunger, best value</li><li>🥧 <b>Pierogi:</b> egg+meat+vegetable+filler, +40 HP, combat essential</li><li>🥞 <b>Butter Muffin:</b> butterfly wings+vegetable+2 twigs, +20 HP +5 sanity</li></ul>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'饥荒联机版 MOD 安装及订阅推荐 新手必备 MOD',en:'MOD Installation & Recommendations',exZh:'Steam创意工坊订阅方法，新手必备MOD推荐列表。',exEn:'Steam Workshop subscription guide. Essential MOD list for beginners.',detailZh:'<p><b>新手必备MOD：</b>Combined Status（显示数值）、Geometric Placement（精准放置）、Health Info（显示血量）、Global Positions（显示队友位置）</p>',detailEn:'<p><b>Essential MODs:</b> Combined Status (show stats), Geometric Placement (precise building), Health Info, Global Positions (see teammates).</p>'},
+                {tag:'longtail',zh:'饥荒联机版复活方法大全 死亡后怎么复活',en:'All Revival Methods',exZh:'试金石、生命护符、肉块雕像、无尽模式复活门，四种复活方式详解。',exEn:'Touch Stone, Life Giving Amulet, Meat Effigy, Endless Mode revive — all 4 methods explained.',detailZh:'<p>四种复活方式：试金石（一次性）、生命护符（携带生效）、肉块雕像（消耗血量上限）、无尽模式传送门（无限复活但有冷却）。</p>',detailEn:'<p>4 revival methods: Touch Stone (one-time), Life Giving Amulet (carry), Meat Effigy (costs max HP), Endless Mode portal (infinite but cooldown).</p>'},
+            ]}
+        ]
+    },
+
+    // ========= 缺氧 =========
+    {
+        id:'oxygen', emoji:'🫧',
+        zh:'缺氧', en:'Oxygen Not Included',
+        cat:'survival', catZh:'生存建造', catEn:'Survival & Building',
+        descZh:'管理你的小行星殖民地，解决氧气、食物、温度等问题。复杂的物理模拟与化学系统，硬核殖民地管理。',
+        descEn:'Manage your asteroid colony. Solve oxygen, food, and temperature challenges. Complex physics simulation & chemistry systems.',
+        metaZh:['Klei','单机','殖民地管理','PC'], metaEn:['Klei','Single Player','Colony Sim','PC'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'缺氧新手开局攻略 前20周期生存指南',en:'First 20 Cycles Survival Guide',exZh:'厕所→床铺→研究站→制氧→食物来源，前20周期关键建筑顺序。',exEn:'Outhouse→Cots→Research Station→Oxygen→Food. Critical build order for first 20 cycles.',detailZh:'<p><b>前20周期建造顺序：</b></p><ul><li>周期1-3：建造厕所（公共厕所+洗手盆），放置床铺</li><li>周期3-7：建造研究站，解锁基础科技</li><li>周期7-12：建造藻类制氧机，解决氧气问题</li><li>周期12-20：种植米虱木，建立稳定的食物来源</li></ul>',detailEn:'<p><b>First 20 cycles build order:</b></p><ul><li>Cycle 1-3: Build Outhouse + Wash Basin, place Cots</li><li>Cycle 3-7: Build Research Station, unlock basic tech</li><li>Cycle 7-12: Build Algae Deoxidizer, solve oxygen</li><li>Cycle 12-20: Plant Mealwood, establish stable food</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'缺氧基地布局方案 新手紧凑型基地推荐',en:'Compact Base Layout Guide',exZh:'标准化基地布局，各功能区位置推荐，管道布线最佳实践。',exEn:'Standard base layout, functional zone placement, pipe routing best practices.',detailZh:'<p>标准基地采用模块化设计，中央设置楼梯+消防杆，左右对称布置功能房间。厨房靠近餐厅，卫生间在基地底部（二氧化碳沉积）。</p>',detailEn:'<p>Standard base uses modular design with central stairs+fire pole. Kitchen near mess hall, bathrooms at bottom (CO2 settles).</p>'},
+                {tag:'core',zh:'缺氧人物特性推荐 开局选什么小人好',en:'Starting Duplicant Selection Guide',exZh:'最优初始三人组特性组合，各属性优先级分析，哪些特性必须避开。',exEn:'Optimal starting trio trait combo. Stat priority analysis. Traits to avoid.',detailZh:'<p><b>初始三人推荐：</b>一位研究员（科学+学得快）、一位挖掘工（挖掘+建造）、一位万能型（力量+烹饪）。避开：胃胀气、嗜睡、面条臂等负面特性。</p>',detailEn:'<p><b>Recommended trio:</b> 1 Researcher (Science + Quick Learner), 1 Digger (Digging + Building), 1 Generalist (Strength + Cooking). Avoid: Flatulent, Narcoleptic, Noodle Arms.</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'缺氧发电方案大全 前期后期发电方式对比',en:'Power Generation Guide',exZh:'人力发电→煤炭→天然气→氢气→石油→太阳能，各阶段发电方案及资源消耗。',exEn:'Manual→Coal→Natural Gas→Hydrogen→Petroleum→Solar. All power options & resource costs.',detailZh:'<p>早期靠跑步机，中期过渡到煤炭发电+智能电池，后期主要依靠天然气和石油发电。太阳能适合后期替代补充。</p>',detailEn:'<p>Early: Manual Generators. Mid: Coal + Smart Battery. Late: Natural Gas + Petroleum. Solar for late-game supplement.</p>'},
+                {tag:'longtail',zh:'缺氧温度控制方法 降温技巧汇总',en:'Temperature Management Guide',exZh:'冰息萝卜、蒸汽涡轮、液冷机等降温设备对比，基地温度分区管理策略。',exEn:'Wheezewort, Steam Turbine, Aquatuner comparison. Base temperature zone management.',detailZh:'<p>核心降温手段：冰息萝卜（早期）、反熵热量中和器（中期）、蒸汽涡轮+液冷机（后期顶级方案）。农产区需要严格控温。</p>',detailEn:'<p>Key cooling: Wheezewort (early), Anti-Entropy Thermo-Nullifier (mid), Steam Turbine + Aquatuner (late). Farm areas need strict temperature control.</p>'},
+            ]}
+        ]
+    },
+
+    // ========= 英灵神殿 =========
+    {
+        id:'valheim', emoji:'⚔️',
+        zh:'英灵神殿', en:'Valheim',
+        cat:'survival', catZh:'生存建造', catEn:'Survival & Building',
+        descZh:'维京题材生存建造游戏。探索广袤世界，击败神话BOSS，建造宏伟长屋，在第十世界中证明自己。',
+        descEn:'Viking survival & building game. Explore a vast world, defeat mythical bosses, build grand longhouses in the 10th world.',
+        metaZh:['Iron Gate','联机/单机','生存建造','PC'], metaEn:['Iron Gate','Multi/Single','Survival Craft','PC'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'英灵神殿新手开局攻略 第一天生存发展指南',en:'Day 1 Survival Guide',exZh:'收集木材石头→制作工具→建造工作台和庇护所→狩猎获取食物。',exEn:'Gather wood & stone→craft tools→build workbench & shelter→hunt for food.',detailZh:'<p>第一天优先建造工作台（10木材）+小木屋（有屋顶有墙有火堆），确保能睡觉度过夜晚。然后狩猎鹿获取皮革和肉。</p>',detailEn:'<p>Day 1 priority: build workbench (10 wood) + small hut (roof + walls + campfire) so you can sleep through the night. Then hunt deer for leather and meat.</p>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'英灵神殿全 Boss 召唤方法及位置 打法技巧汇总',en:'All Boss Summon & Strategy Guide',exZh:'赤血灵鹿→古树长老→邪骨恶灵→莫德→亚格鲁斯→女王，全Boss攻略。',exEn:'Eikthyr→The Elder→Bonemass→Moder→Yagluth→The Queen, complete boss strategies.',detailZh:'<p>每个Boss需要在特定祭坛使用对应祭品召唤。击败后获得关键道具解锁下一阶段。建议充分准备装备和食物再挑战。</p>',detailEn:'<p>Each boss requires specific offerings at their altar. Defeating them grants key items to unlock the next stage. Fully prepare gear and food before each fight.</p>'},
+                {tag:'core',zh:'英灵神殿基地建造技巧 新手建家位置推荐',en:'Base Building Tips & Location Guide',exZh:'最佳建家位置（靠近水边、平原地形），承重系统详解，防御工事设计。',exEn:'Best base locations (near water, flat terrain). Structural support system. Defense design.',detailZh:'<p>推荐在草原靠近黑森林和水边的位置建家。基地需要护城河或围墙防御袭击事件。结构和烟囱设计很重要。</p>',detailEn:'<p>Build near Meadows-Black Forest border close to water. Base needs moat or walls for raid defense. Proper structural support and chimney design is crucial.</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'英灵神殿种地方法及作物生长条件',en:'Farming Guide — Crops & Conditions',exZh:'耕种解锁流程，胡萝卜→芜菁→大麦→亚麻种植条件，作物需要足够空间和阳光。',exEn:'Farming unlock process. Carrot→Turnip→Barley→Flax. Crops need space and sunlight.',detailZh:'<p>击败赤血灵鹿后解锁锄头，可以耕种。先种胡萝卜（黑森林采集种子），后种芜菁（沼泽）。平原可种大麦和亚麻。</p>',detailEn:'<p>After defeating Eikthyr, unlock Cultivator for farming. Start with Carrots (seeds from Black Forest), then Turnips (Swamp). Plains for Barley and Flax.</p>'},
+                {tag:'longtail',zh:'英灵神殿 MOD 安装及推荐 新手必备模组',en:'MOD Guide — Essential Mods',exZh:'BepInEx框架安装，必备MOD：Valheim Plus、Equipment & Quick Slots、Farm Grid等。',exEn:'BepInEx framework setup. Essential MODs: Valheim Plus, Equipment & Quick Slots, Farm Grid.',detailZh:'<p>推荐MOD：Valheim Plus（综合优化）、Equipment & Quick Slots（装备槽）、Plant Everything（种植更多）、BetterUI（界面增强）。</p>',detailEn:'<p>Recommended: Valheim Plus (all-around QOL), Equipment & Quick Slots, Plant Everything, BetterUI.</p>'},
+            ]}
+        ]
+    },
+
+    // ========= 泰拉瑞亚 =========
+    {
+        id:'terraria', emoji:'⛏️',
+        zh:'泰拉瑞亚', en:'Terraria',
+        cat:'sandbox', catZh:'沙盒冒险', catEn:'Sandbox Adventure',
+        descZh:'2D沙盒冒险神作。挖掘、战斗、探索、建造！击败海量Boss，收集最强装备，打造独一无二的世界。',
+        descEn:'The ultimate 2D sandbox adventure. Dig, fight, explore, build! Defeat countless bosses, collect ultimate gear, craft your unique world.',
+        metaZh:['Re-Logic','联机/单机','沙盒冒险','全平台'], metaEn:['Re-Logic','Multi/Single','Sandbox','All Platforms'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'泰拉瑞亚新手开局攻略 第一天必做事项',en:'Day 1 Beginner Guide',exZh:'砍树→建庇护所→探索地表→收集矿石→制作基础装备，第一天完整行动指南。',exEn:'Chop trees→build shelter→explore surface→mine ores→craft basic gear. Complete Day 1 guide.',detailZh:'<p><b>第一天行动指南：</b></p><ul><li>砍树，建造一间至少6×10的房屋（需要桌子、椅子、光源、背景墙）</li><li>地表探索，收集宝箱里的物品</li><li>下矿洞采集铜/铁/银/金矿石</li><li>制作铜镐→铁砧→铁镐，逐步升级</li><li>生命水晶提高生命上限至200</li></ul>',detailEn:'<p><b>Day 1 action plan:</b></p><ul><li>Chop trees, build a house (6×10 min, needs table+chair+light+walls)</li><li>Explore surface, collect chest loot</li><li>Mine underground for Copper/Iron/Silver/Gold</li><li>Craft Copper Pickaxe→Anvil→Iron Pickaxe, upgrade progressively</li><li>Life Crystals to increase HP to 200</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'泰拉瑞亚全 Boss 召唤顺序及打法大全',en:'Complete Boss Progression Guide',exZh:'史莱姆王→克眼→世界吞噬者→骷髅王→血肉墙→机械三王→世纪之花→石巨人→月总，标准攻略顺序。',exEn:'King Slime→Eye of Cthulhu→Eater of Worlds→Skeletron→Wall of Flesh→Mech Bosses→Plantera→Golem→Moon Lord.',detailZh:'<p>共30+Boss，按顺序有标准推进路线。建议每阶段充分准备：搭建战斗场地、准备药水、升级装备。</p>',detailEn:'<p>30+ bosses with standard progression. Prepare for each: build arenas, brew potions, upgrade gear.</p>'},
+                {tag:'core',zh:'泰拉瑞亚职业推荐 四大职业特点及玩法介绍',en:'Class Guide — 4 Classes Explained',exZh:'战士（近战）、射手（远程）、法师（魔法）、召唤师，各职业优劣势及核心装备。',exEn:'Warrior (melee), Ranger (ranged), Mage (magic), Summoner. Pros & cons, core equipment.',detailZh:'<p>战士最肉，适合新手。射手输出稳定，打Boss强。法师后期伤害最高但脆。召唤师安全但前中期弱。</p>',detailEn:'<p>Warrior is tankiest, best for beginners. Ranger has consistent DPS, great for bosses. Mage has highest late-game damage but fragile. Summoner is safe but weak early-mid.</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'泰拉瑞亚 MOD 安装及加载教程 tModLoader 使用方法',en:'tModLoader MOD Guide',exZh:'tModLoader免费DLC安装→创意工坊订阅MOD→MOD管理→必备大型MOD推荐。',exEn:'tModLoader free DLC install→Workshop subscribe→MOD manager→Essential large MODs.',detailZh:'<p>必备大型MOD：Calamity（灾厄）、Thorium（瑟银）、Fargo\'s Souls（法狗魂）。辅助MOD：Recipe Browser、Boss Checklist、Magic Storage。</p>',detailEn:'<p>Essential large MODs: Calamity, Thorium, Fargo\'s Souls. Utility MODs: Recipe Browser, Boss Checklist, Magic Storage.</p>'},
+                {tag:'longtail',zh:'泰拉瑞亚全成就解锁条件一览',en:'Achievement Guide',exZh:'104个Steam成就全列表，最难成就如"200个钓鱼任务"的速通技巧。',exEn:'All 104 Steam achievements. Speed tips for hardest ones like "200 fishing quests".',detailZh:'<p>最难成就包括：200个渔夫任务（可用多个角色加速）、收集全图鉴、清除所有腐化/猩红等。</p>',detailEn:'<p>Hardest: 200 Angler quests (use multiple characters to speed up), complete Bestiary, purify entire world.</p>'},
+            ]}
+        ]
+    },
+
+    // ========= 我的世界 =========
+    {
+        id:'minecraft', emoji:'🧱',
+        zh:'我的世界', en:'Minecraft',
+        cat:'sandbox', catZh:'沙盒冒险', catEn:'Sandbox Adventure',
+        descZh:'无限可能的方块世界。从撸树开始，到击败末影龙。探索、建造、红石、附魔，创造力没有上限。',
+        descEn:'A world of infinite blocks. From punching trees to defeating the Ender Dragon. Explore, build, redstone, enchant — creativity has no limit.',
+        metaZh:['Mojang','联机/单机','沙盒','全平台'], metaEn:['Mojang','Multi/Single','Sandbox','All Platforms'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'我的世界新手生存第一天教程 开局必做事项',en:'Day 1 Survival Checklist',exZh:'撸树→制作工作台→木镐→挖石头→石制工具→寻找煤炭→建造庇护所，第一天生存流程。',exEn:'Punch trees→craft workbench→wooden pickaxe→mine stone→stone tools→find coal→build shelter.',detailZh:'<p><b>第一天完整流程：</b></p><ul><li>找到树木→徒手获取原木→制作工作台→制作木镐</li><li>用木镐挖3块圆石→制作石镐、石斧、石剑、熔炉</li><li>寻找煤炭（或烧木头制作木炭）→制作火把</li><li>天黑前建造简易庇护所（泥土或木材）</li><li>如果需要羊毛做床，找到并击杀3只羊</li></ul>',detailEn:'<p><b>Day 1 checklist:</b></p><ul><li>Find trees→punch for logs→craft workbench→craft wooden pickaxe</li><li>Mine 3 cobblestone→craft stone pickaxe, axe, sword, furnace</li><li>Find coal (or smelt wood for charcoal)→craft torches</li><li>Build simple shelter before nightfall (dirt or wood)</li><li>If you need wool for a bed, find and kill 3 sheep</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'我的世界钻石快速获取方法 挖矿技巧大全',en:'Diamond Mining Guide',exZh:'最佳挖矿层数（Y=-54）、鱼骨挖矿法、水下洞穴探索、村民交易获取钻石装备。',exEn:'Best mining level (Y=-54), branch mining, underwater caves, villager trading for diamond gear.',detailZh:'<p>1.18+版本钻石生成在Y=-54附近最多。推荐鱼骨挖矿法（主通道+侧分支间隔3格）。附魔时运3的镐子可以最大化掉落。</p>',detailEn:'<p>1.18+: diamonds spawn most at Y=-54. Use branch mining (main tunnel + 3-block spaced branches). Fortune III pickaxe maximizes drops.</p>'},
+                {tag:'core',zh:'我的世界红石入门教程 基础电路制作',en:'Redstone Beginner Guide',exZh:'红石粉、中继器、比较器、活塞基础用法，自动农场、自动门等简单装置制作。',exEn:'Redstone dust, repeaters, comparators, pistons basics. Auto farms, auto doors, simple contraptions.',detailZh:'<p>红石基础元件：红石粉（传递信号）、红石中继器（延长+延迟信号）、红石比较器（检测容器状态）、活塞（推动方块）。</p>',detailEn:'<p>Basic components: Redstone Dust (transmits signal), Repeater (extends + delays signal), Comparator (detects container state), Piston (pushes blocks).</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'我的世界建筑入门技巧 新手房屋建造方案',en:'Building Guide for Beginners',exZh:'基础房屋设计、材料选择、内饰布置、进阶建筑风格介绍（现代/中世纪/日式）。',exEn:'Basic house designs, material selection, interior decoration. Building styles (Modern/Medieval/Japanese).',detailZh:'<p>从火柴盒开始升级：加入屋顶斜坡、窗框、门廊、不同材质混合。参照现实建筑照片练习，使用创造模式多尝试。</p>',detailEn:'<p>Upgrade from the starter box: add sloped roofs, window frames, porches, mixed materials. Use real architecture photos as reference, experiment in Creative mode.</p>'},
+                {tag:'longtail',zh:'我的世界模组安装及推荐 新手必备 MOD',en:'MOD Installation & Recommendations',exZh:'Forge/Fabric安装→MOD下载→必备MOD：JEI、JourneyMap、OptiFine、Create等。',exEn:'Forge/Fabric setup→MOD download→Essential MODs: JEI, JourneyMap, OptiFine, Create.',detailZh:'<p>必备MOD：JEI（物品查看）、JourneyMap（小地图）、OptiFine（性能优化+光影）、Sodium（高清修复替代）、Create（机械动力，大型内容MOD）。</p>',detailEn:'<p>Essential: JEI (item viewer), JourneyMap (minimap), OptiFine (performance + shaders), Sodium (OptiFine alternative), Create (mechanical engineering MOD).</p>'},
+            ]}
+        ]
+    },
+
+    // ========= 鬼谷八荒 =========
+    {
+        id:'guigubahuang', emoji:'🏯',
+        zh:'鬼谷八荒', en:'Tale of Immortal',
+        cat:'chinese', catZh:'国风单机', catEn:'Chinese RPG',
+        descZh:'开放世界修仙RPG。从炼气期开始修炼，突破境界、学习功法、建立宗门，在鬼谷世界中飞升成仙。',
+        descEn:'Open-world cultivation RPG. Start from Qi Refining, breakthrough realms, learn techniques, build sects, and ascend to immortality in the Guigu world.',
+        metaZh:['鬼谷工作室','单机','修仙RPG','PC'], metaEn:['Guigu Studio','Single Player','Cultivation RPG','PC'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'鬼谷八荒新手开局攻略 新手难度发展思路',en:'Beginner Difficulty Guide',exZh:'先天选择→功法获取→突破境界→宗门加入，新手最优发展路线。',exEn:'Innate talent selection→technique acquisition→breakthrough→join sect. Optimal beginner path.',detailZh:'<p>开局推荐先天：鬼谷外门（增加战斗收益）、武法灵童（加强功法）、天命之子（幸运+魅力）。初期优先加入宗门获取功法。</p>',detailEn:'<p>Recommended innates: Ghost Valley Outer Disciple (combat profit), Martial Arts Prodigy (stronger techniques), Child of Destiny (luck+charisma). Join a sect early for techniques.</p>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'鬼谷八荒最强功法搭配 各流派 Build 推荐',en:'Best Builds & Technique Combinations',exZh:'剑修、刀修、枪修、拳修、指修、掌修、火修、水修、雷修、风修、土修、木修，各流派核心Build。',exEn:'Sword, Blade, Spear, Fist, Finger, Palm, Fire, Water, Thunder, Wind, Earth, Wood — best builds for each.',detailZh:'<p>剑修是公认最强流派之一，暴击流输出极高。火修持续伤害出色。风修机动性最强。建议根据自己喜欢的方式选择。</p>',detailEn:'<p>Sword cultivation is one of the strongest — crit build with insane DPS. Fire excels at DoT. Wind has the best mobility. Choose based on your playstyle preference.</p>'},
+                {tag:'core',zh:'鬼谷八荒开局气运推荐 最强天命排行',en:'Innate Talent Tier List',exZh:'所有先天天命强度排行，不同流派对应的最优天命选择。',exEn:'All innate talent tier ranking. Best talent picks for each cultivation style.',detailZh:'<p>T0：鬼谷外门（全流派通用）、后羿射日（远程流T0）、夸父追日（移速流核心）。大部分先天可以SL随机刷出红色高品质。</p>',detailEn:'<p>T0: Ghost Valley Outer Disciple (universal), Houyi Shoots the Sun (ranged T0), Kuafu Chases the Sun (speed core). Most innates can be save-scummed for red quality.</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'鬼谷八荒道侣选择及好感提升攻略',en:'Dao Companion & Relationship Guide',exZh:'道侣系统详解，好感度提升方法，双修条件及收益，最强道侣推荐。',exEn:'Dao Companion system explained. Friendship methods, dual cultivation conditions & benefits.',detailZh:'<p>通过送礼、论道、共同战斗提升好感度。当好感度达到一定值后可以结为道侣，进行双修获得属性加成。</p>',detailEn:'<p>Raise affection through gifts, debate, and fighting together. At certain thresholds, become Dao companions for dual cultivation stat bonuses.</p>'},
+                {tag:'longtail',zh:'鬼谷八荒隐藏任务触发条件大全',en:'Hidden Quest Trigger Guide',exZh:'全隐藏奇遇触发条件，稀有功法获取途径，特殊事件攻略。',exEn:'All hidden encounters. Rare technique acquisition. Special event strategies.',detailZh:'<p>隐藏任务通常需要在特定境界、特定地点、特定时间触发。如"神兽传说"需要筑基期在雷泽触发。</p>',detailEn:'<p>Hidden quests typically require specific realm, location, and timing. E.g. "Divine Beast Legend" needs Foundation Establishment at Thunder Marsh.</p>'},
+            ]}
+        ]
+    },
+
+    // ========= 暖雪 =========
+    {
+        id:'warmSnow', emoji:'❄️',
+        zh:'暖雪', en:'Warm Snow',
+        cat:'chinese', catZh:'国风单机', catEn:'Chinese RPG',
+        descZh:'暗黑国风动作Roguelite。在暖雪纷飞的诡异世界中，搭配圣物与武器，挑战七大BOSS，揭开白雪之谜。',
+        descEn:'Dark Chinese-style action Roguelite. In a world of peculiar warm snow, combine relics and weapons, challenge 7 bosses, uncover the mystery of the snow.',
+        metaZh:['BadMudStudio','单机','动作Roguelite','PC/移动'], metaEn:['BadMudStudio','Single Player','Action Roguelite','PC/Mobile'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'暖雪新手入门攻略 基础玩法及操作说明',en:'Beginner Gameplay & Controls Guide',exZh:'基础操作、战斗机制、飞剑系统、圣物槽位、宗门选择入门。',exEn:'Basic controls, combat mechanics, flying sword system, relic slots, sect selection.',detailZh:'<p>核心战斗系统：普攻+飞剑+圣物技能。闪避有无敌帧可以躲大量伤害。7个宗门各有特色，新手推荐七剑修罗（操作简单）或无量尊（远程安全）。</p>',detailEn:'<p>Core combat: basic attacks + flying swords + relic skills. Dodge has i-frames to avoid damage. 7 sects, beginners should try Seven Swords (simple) or Infinite Venerable (ranged, safe).</p>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'暖雪最强流派 Build 推荐 全宗派玩法详解',en:'Best Builds & All Sects Guide',exZh:'七剑修罗、无量尊、万剑诀、炽焰、寒霜、雷霆、毒蛊，七大宗派最强Build搭配。',exEn:'Seven Swords, Infinite Venerable, Myriad Swords, Blazing Flame, Frost, Thunder, Poison — best builds.',detailZh:'<p>七剑修罗：攻速流，配合流血圣物。无量尊：远程剑气，核心圣物朱雀/玄武。炽焰：伤害最高但脆，需要熟练操作。</p>',detailEn:'<p>Seven Swords: attack speed with bleed relics. Infinite Venerable: ranged sword qi, core relics Zhuque/Xuanwu. Blazing Flame: highest damage but fragile, needs skill.</p>'},
+                {tag:'core',zh:'暖雪圣物搭配大全 各流派核心圣物推荐',en:'Relic Combinations Guide',exZh:'四大圣物槽位（核心/力量/敏捷/功效）最优搭配，全圣物效果一览。',exEn:'4 relic slots (Core/Power/Agility/Efficacy) optimal combos. All relic effects overview.',detailZh:'<p>通用强力圣物：朱雀（核心位，增伤+火伤）、玄武（核心位，减伤+回复）、白虎（力量位，暴击）、青龙（敏捷位，攻速）。</p>',detailEn:'<p>Universal power relics: Zhuque (Core, damage+fire), Xuanwu (Core, defense+regen), Baihu (Power, crit), Qinglong (Agility, attack speed).</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'暖雪隐藏结局触发条件 全结局达成指南',en:'Hidden Ending & All Endings Guide',exZh:'普通结局+真相结局+隐藏结局触发条件，全章节关键抉择点。',exEn:'Normal ending + True ending + Hidden ending conditions. All chapter key choices.',detailZh:'<p>游戏有多个结局分支，关键选择会影响最终结局。真相结局需要收集特定道具并在最终关卡做出正确选择。</p>',detailEn:'<p>Multiple endings branch from key choices. True ending requires collecting specific items and making the right choice at the final level.</p>'},
+                {tag:'longtail',zh:'暖雪 DLC 内容及新增玩法介绍',en:'DLC Content & New Features',exZh:'烬梦DLC新增内容：新地图、新Boss、新圣物、新武器、新难度等级。',exEn:'Ember Dream DLC: new maps, bosses, relics, weapons, and difficulty levels.',detailZh:'<p>烬梦DLC扩展了游戏内容，增加全新章节、Boss和道具。新难度"白灰"提供更高挑战和奖励。</p>',detailEn:'<p>Ember Dream DLC expands content with new chapters, bosses, and items. New "White Ash" difficulty offers greater challenge and rewards.</p>'},
+            ]}
+        ]
+    }
+];
+
+// ==================== RENDER ====================
+let currentLang = 'zh';
+let currentGame = null;
+
+const $sidebarNav = document.getElementById('sidebarNav');
+const $contentArea = document.getElementById('contentArea');
+const $breadcrumb = document.getElementById('breadcrumb');
+const $detailModal = document.getElementById('detailModal');
+const $detailContent = document.getElementById('detailContent');
+const $searchInput = document.getElementById('searchInput');
+
+// Build sidebar nav
+function buildSidebar() {
+    const cats = [
+        {id:'sim', zh:'模拟经营', en:'Simulation', icon:'🏭'},
+        {id:'survival', zh:'生存建造', en:'Survival & Build', icon:'🏕️'},
+        {id:'sandbox', zh:'沙盒冒险', en:'Sandbox Adventure', icon:'🌍'},
+        {id:'chinese', zh:'国风单机', en:'Chinese RPG', icon:'🏮'}
+    ];
+
+    let html = '';
+    cats.forEach(cat => {
+        const catGames = gameData.filter(g => g.cat === cat.id);
+        html += `<div class="cat-title" data-cat="${cat.id}" onclick="toggleCat(this)">
+            <span>${cat.icon}</span> <span data-zh="${cat.zh}" data-en="${cat.en}">${cat.zh}</span>
+            <span class="arrow">▶</span>
+        </div>`;
+        html += `<div class="cat-items" id="cat-${cat.id}">`;
+        catGames.forEach(g => {
+            html += `<a class="game-link" href="#${g.id}" data-game="${g.id}" onclick="selectGame('${g.id}')">
+                <span class="emoji">${g.emoji}</span>
+                <span data-zh="${g.zh}" data-en="${g.en}">${g.zh}</span>
+            </a>`;
+        });
+        html += `</div>`;
+    });
+    $sidebarNav.innerHTML = html;
+
+    // Open first category by default
+    const firstCat = document.querySelector('.cat-title');
+    if(firstCat) firstCat.click();
+}
+
+function toggleCat(el) {
+    const catId = el.dataset.cat;
+    const items = document.getElementById('cat-' + catId);
+    el.classList.toggle('open');
+    items.classList.toggle('open');
+}
+
+function selectGame(id) {
+    currentGame = gameData.find(g => g.id === id);
+    if(!currentGame) return;
+
+    // Update sidebar active
+    document.querySelectorAll('.game-link').forEach(l => l.classList.remove('active'));
+    const link = document.querySelector(`.game-link[data-game="${id}"]`);
+    if(link) link.classList.add('active');
+
+    renderGame(currentGame);
+
+    // On mobile, close sidebar
+    document.getElementById('sidebar').classList.remove('open');
+}
+
+function renderGame(game) {
+    const L = currentLang;
+    const gameSection = document.createElement('div');
+    gameSection.className = 'game-section active';
+
+    // Breadcrumb
+    const catName = L==='zh' ? game.catZh : game.catEn;
+    const gameName = L==='zh' ? game.zh : game.en;
+    $breadcrumb.innerHTML = `<span data-zh="首页" data-en="Home">首页</span> › ${catName} › <span style="color:var(--accent)">${gameName}</span>`;
+
+    // Top banner ad
+    let html = `<div class="ad-container ad-top-banner">
+        <div class="ad-label">${L==='zh' ? '广告' : 'Advertisement'}</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2007425330071723"
+             data-ad-slot="3002501617"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+    </div>`;
+
+    // Hero
+    html += `<div class="page-hero">
+        <span class="game-icon">${game.emoji}</span>
+        <h1>${L==='zh' ? game.zh : game.en}</h1>
+        <div class="en-name">${L==='en' ? game.zh : game.en}</div>
+        <p class="desc">${L==='zh' ? game.descZh : game.descEn}</p>
+        <div class="game-meta">${(L==='zh' ? game.metaZh : game.metaEn).map(m=>`<span class="meta-chip">${m}</span>`).join('')}</div>
+    </div>`;
+
+    // Tabs
+    const tabIds = game.tabs.map(t => t.id);
+    const tabLabels = {beginner:L==='zh'?'入门必更':'Starter', core:L==='zh'?'核心攻略':'Core', longtail:L==='zh'?'长尾问题':'Advanced'};
+    const tabColors = {beginner:'green', core:'accent', longtail:'purple'};
+
+    html += `<div class="tab-bar">`;
+    game.tabs.forEach(t => {
+        html += `<button class="tab-btn ${t.id==='beginner'?'active':''}" data-tab="${t.id}" onclick="switchTab(this,'${game.id}')">
+            ${tabLabels[t.id]}
+        </button>`;
+    });
+    html += `</div>`;
+
+    // Tab panels
+    game.tabs.forEach(t => {
+        html += `<div class="tab-panel ${t.id==='beginner'?'active':''}" id="tab-${game.id}-${t.id}">
+            <div class="article-grid">`;
+        t.articles.forEach((a,i) => {
+            const tagClass = a.tag;
+            const tagLabel = {beginner:L==='zh'?'入门':'Starter', core:L==='zh'?'核心':'Core', longtail:L==='zh'?'长尾':'Advanced'};
+            const title = L==='zh' ? a.zh : a.en;
+            const excerpt = L==='zh' ? a.exZh : a.exEn;
+            html += `<div class="article-card" onclick="openDetail('${game.id}','${t.id}',${i})">
+                <span class="tag ${tagClass}">${tagLabel[a.tag]}</span>
+                <h4>${title}</h4>
+                <div class="excerpt">${excerpt}</div>
+            </div>`;
+        });
+        html += `</div></div>`;
+    });
+
+    // Bottom ad
+    html += `<div class="ad-container ad-bottom">
+        <div class="ad-label">${L==='zh' ? '广告' : 'Advertisement'}</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2007425330071723"
+             data-ad-slot="5437093269"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+    </div>`;
+
+    $contentArea.innerHTML = html;
+    // Initialize new AdSense ad units in dynamic content
+    try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+}
+
+function switchTab(btn, gameId) {
+    const tabId = btn.dataset.tab;
+    // Update buttons
+    btn.parentElement.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    // Update panels
+    document.querySelectorAll(`[id^="tab-${gameId}-"]`).forEach(p => p.classList.remove('active'));
+    document.getElementById(`tab-${gameId}-${tabId}`).classList.add('active');
+}
+
+// Detail modal
+function openDetail(gameId, tabId, articleIndex) {
+    const game = gameData.find(g => g.id === gameId);
+    const tab = game.tabs.find(t => t.id === tabId);
+    const article = tab.articles[articleIndex];
+    const L = currentLang;
+
+    $detailContent.innerHTML = `
+        <button class="detail-close" onclick="closeDetail()">✕</button>
+        <span class="tag detail-tag ${article.tag}">${article.tag==='beginner'?(L==='zh'?'入门必更':'Starter Guide'):article.tag==='core'?(L==='zh'?'核心攻略':'Core Guide'):(L==='zh'?'长尾问题':'Advanced')}</span>
+        <h3>${L==='zh' ? article.zh : article.en}</h3>
+        <div class="detail-body">${L==='zh' ? article.detailZh : article.detailEn}</div>
+    `;
+    $detailModal.classList.add('open');
+}
+
+function closeDetail() {
+    $detailModal.classList.remove('open');
+}
+
+$detailModal.addEventListener('click', function(e) {
+    if(e.target === this) closeDetail();
+});
+
+// Language switch
+const $langBtn = document.getElementById('langToggle');
+$langBtn.addEventListener('click', () => {
+    currentLang = currentLang === 'zh' ? 'en' : 'zh';
+    $langBtn.textContent = currentLang === 'zh' ? '🌐 English' : '🌐 中文';
+    document.documentElement.lang = currentLang === 'zh' ? 'zh-CN' : 'en';
+    // Update all data-zh/data-en elements
+    document.querySelectorAll('[data-zh][data-en]').forEach(el => {
+        const text = el.getAttribute('data-' + currentLang);
+        if(text !== null && text !== undefined) el.textContent = text;
+    });
+    // Update search placeholder
+    $searchInput.placeholder = currentLang === 'zh' ? '搜索攻略...' : 'Search guides...';
+    // Re-render current game
+    if(currentGame) renderGame(currentGame);
+    try { localStorage.setItem('gg-lang', currentLang); } catch(e) {}
+});
+
+// Search
+$searchInput.addEventListener('input', function() {
+    const query = this.value.toLowerCase().trim();
+    if(!query) {
+        if(currentGame) renderGame(currentGame);
+        return;
+    }
+    // Search across all games
+    const results = [];
+    gameData.forEach(game => {
+        game.tabs.forEach(tab => {
+            tab.articles.forEach((article, i) => {
+                const zhText = article.zh + article.exZh + article.detailZh;
+                const enText = article.en + article.exEn + article.detailEn;
+                if(zhText.toLowerCase().includes(query) || enText.toLowerCase().includes(query)) {
+                    results.push({game, tab, article, index: i});
+                }
+            });
+        });
+    });
+
+    // Render search results
+    if(results.length === 0) {
+        $contentArea.innerHTML = `<div class="page-hero" style="text-align:center;padding:60px 20px;">
+            <span style="font-size:3rem;display:block;margin-bottom:16px;">🔍</span>
+            <h2 data-zh="未找到结果" data-en="No Results Found">未找到结果</h2>
+            <p class="desc" data-zh="尝试其他关键词搜索" data-en="Try a different search term" style="margin-top:8px;">尝试其他关键词搜索</p>
+        </div>`;
+        return;
+    }
+
+    const L = currentLang;
+    let html = `<div class="page-hero">
+        <h2>🔍 ${L==='zh'?'搜索结果':'Search Results'} (${results.length})</h2>
+    </div><div class="article-grid">`;
+    results.forEach(r => {
+        const gameName = L==='zh' ? r.game.zh : r.game.en;
+        const title = L==='zh' ? r.article.zh : r.article.en;
+        const excerpt = L==='zh' ? r.article.exZh : r.article.exEn;
+        html += `<div class="article-card" onclick="selectGame('${r.game.id}');setTimeout(()=>switchTab(document.querySelector('.tab-btn[data-tab=\"${r.tab.id}\"]'),'${r.game.id}'),300)">
+            <span class="tag ${r.article.tag}" style="margin-bottom:6px;">${gameName}</span>
+            <h4>${title}</h4>
+            <div class="excerpt">${excerpt}</div>
+        </div>`;
+    });
+    html += `</div>`;
+    // Bottom ad for search results
+    html += `<div class="ad-container ad-bottom">
+        <div class="ad-label">${L==='zh' ? '广告' : 'Advertisement'}</div>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-2007425330071723"
+             data-ad-slot="5437093269"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+    </div>`;
+    $contentArea.innerHTML = html;
+    $breadcrumb.innerHTML = `<span>🔍 ${L==='zh'?'搜索':'Search'}: "${query}"</span>`;
+    // Initialize new ads
+    try { (window.adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+});
+
+// Mobile menu
+document.getElementById('menuToggle').addEventListener('click', () => {
+    document.getElementById('sidebar').classList.toggle('open');
+});
+
+// Close sidebar on outside click (mobile)
+document.addEventListener('click', (e) => {
+    const sidebar = document.getElementById('sidebar');
+    const menuToggle = document.getElementById('menuToggle');
+    if(!sidebar.contains(e.target) && e.target !== menuToggle && !menuToggle.contains(e.target)) {
+        sidebar.classList.remove('open');
+    }
+});
+
+// Init
+buildSidebar();
+
+// Load language preference
+try {
+    const saved = localStorage.getItem('gg-lang');
+    if(saved === 'en') {
+        currentLang = 'en';
+        $langBtn.textContent = '🌐 中文';
+        document.documentElement.lang = 'en';
+    }
+} catch(e) {}
+
+// Select first game by default
+const firstGame = gameData[0];
+selectGame(firstGame.id);
+
+// Global functions for onclick handlers
+window.toggleCat = toggleCat;
+window.selectGame = selectGame;
+window.switchTab = switchTab;
+window.openDetail = openDetail;
+window.closeDetail = closeDetail;
+</script>
+</body>
+</html>
