@@ -541,6 +541,72 @@ const gameData = [
         ]
     },
 
+    // ========= 小丑牌 =========
+    {
+        id:'balatro', emoji:'🃏',
+        zh:'小丑牌', en:'Balatro',
+        cat:'roguelike', catZh:'肉鸽卡牌', catEn:'Roguelike Cards',
+        descZh:'Roguelike扑克构筑游戏，用小丑牌创造逆天Combo。150张小丑牌×5种潜力变数，每一次出牌都是新的可能。',
+        descEn:'Roguelike poker deckbuilder — create game-breaking combos with 150 Jokers and 5 potential variants. Every hand is a new possibility.',
+        metaZh:['LocalThunk','单机','牌组构筑','全平台','TGA提名'], metaEn:['LocalThunk','Single Player','Deckbuilder','All Platforms','TGA Nominee'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'Balatro新手入门攻略 基础规则与机制详解',en:'Balatro Beginner Guide — Rules & Mechanics',exZh:'游戏基本规则、筹码与倍率计算、盲注系统、出牌次数管理，0基础上手指南。',exEn:'Basic rules, chips & mult calculation, blind system, hands management. Complete starter guide.',detailZh:'<p><b>核心概念：</b></p><ul><li>🎯 <b>筹码(Chips)：</b>手牌基础筹码×小丑牌加成=最终筹码</li><li>🎯 <b>倍率(Mult)：</b>基础倍率+小丑牌倍率加成，乘在筹码上</li><li>🎯 <b>盲注(Blind)：</b>每关需达标的筹码量，分小盲注/大盲注/Boss盲注</li><li>🎯 <b>出牌次数：</b>每回合有限，需要合理分配</li></ul><p>新手建议：优先解锁能加筹码和倍率的小丑牌，尽早定位D方向。</p>',detailEn:'<p><b>Core concepts:</b></p><ul><li>🎯 <b>Chips:</b> Base hand chips × Joker bonuses = final chips</li><li>🎯 <b>Mult:</b> Base mult + Joker mult bonuses, multiplied by chips</li><li>🎯 <b>Blinds:</b> Target chip count per round (Small/Large/Boss)</li><li>🎯 <b>Hands:</b> Limited per round, manage wisely</li></ul><p>Tip: Prioritize Jokers that add chips and mult. Find your build direction early.</p>'},
+                {tag:'beginner',zh:'小丑牌核心机制解析 筹码和倍率计算规则',en:'Core Mechanics — Chips & Mult Calculation',exZh:'深入了解筹码系统、倍率叠加、×运算和+运算的区别，打出最高分。',exEn:'Deep dive into chips system, mult stacking, × vs + operations to maximize score.',detailZh:'<p><b>计算公式：</b>最终得分 = (手牌筹码 + 小丑牌筹码) × (手牌倍率 + 小丑牌倍率)</p><p><b>关键：</b>×倍率的收益远大于+倍率。例如+10mult和×3mult放在一起，顺序不同结果天差地别。×运算放在最后面！</p>',detailEn:'<p><b>Formula:</b> Final Score = (Hand Chips + Joker Chips) × (Hand Mult + Joker Mult)</p><p><b>Key:</b> ×mult greatly outperforms +mult. ×3mult after +10mult = 30, but +10mult after ×3mult = different. Always place ×mult last!</p>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'Balatro强力小丑牌推荐 各流派核心牌选择',en:'Best Joker Cards — Build Archetype Guide',exZh:'同花顺流、弃牌流、多倍伤流、钢铁流，各流派核心小丑牌及搭配思路。',exEn:'Flush builds, discard builds, mult stacking, steel builds — key Jokers for each archetype.',detailZh:'<p><b>热门流派：</b></p><ul><li>🔥 <b>同花顺流：</b>Smeared Joker(红黑合一) + Supernova(同花+倍率)</li><li>🔥 <b>弃牌流：</b>Banner(弃牌次数+筹码) + Delayed Gratification(未弃牌+钱)</li><li>🔥 <b>倍率流：</b>Hologram(×倍率随牌数增长) + Steel Joker(钢牌×1.5)</li><li>🔥 <b>钢铁流：</b>Baron(手牌每张K×1.5) + Mime(重复手中牌效果)</li></ul>',detailEn:'<p><b>Popular builds:</b></p><ul><li>🔥 <b>Flush:</b> Smeared Joker(red+black merged) + Supernova(+mult per flush)</li><li>🔥 <b>Discard:</b> Banner(+chips per discard) + Delayed Gratification(+$ per unused discard)</li><li>🔥 <b>Mult Stack:</b> Hologram(×mult grows with cards added) + Steel Joker(×1.5 per steel card)</li><li>🔥 <b>Steel King:</b> Baron(×1.5 per King in hand) + Mime(re-triggers held card effects)</li></ul>'},
+                {tag:'core',zh:'Balatro Boss盲注对策 全Boss应对策略',en:'Boss Blind Counter Strategies',exZh:'所有Boss盲注效果一览，针对Debuff的卡组调整策略，确保不被克制。',exEn:'All Boss Blind effects. Deck adjustments to counter debuffs. Never get countered.',detailZh:'<p><b>高危Boss：</b></p><ul><li>The Wall: 极高筹码要求（3×~5×）→ 需要爆发型小丑牌</li><li>The Needle: 只给1次出牌 → 弃牌流派或高单牌伤害Build</li><li>The Eye: 每种牌型只能用1次 → 准备多种牌型</li><li>The Arm: 每次出牌降低等级 → 速战速决或多备提升手段</li></ul>',detailEn:'<p><b>Dangerous Bosses:</b></p><ul><li>The Wall: Extreme chip requirement → need burst damage Jokers</li><li>The Needle: Only 1 hand → discard builds or high single-hand damage</li><li>The Eye: Each hand type only once → prepare multiple hand types</li><li>The Arm: Each hand lowers level → finish quickly or have level boosters</li></ul>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'Balatro全收藏解锁攻略 小丑牌全图鉴',en:'Complete Collection — All Joker Unlock Guide',exZh:'150张小丑牌解锁条件汇总，隐藏牌获取方法，传说牌触发条件。',exEn:'150 Joker unlock conditions, hidden cards, legendary Joker triggers.',detailZh:'<p>共150张小丑牌，大部分通过游戏进程自然解锁。传说牌（共5张）需满足特定条件才能获得。</p>',detailEn:'<p>150 Jokers total, most unlock naturally through gameplay. 5 Legendary Jokers require specific conditions.</p>'},
+                {tag:'longtail',zh:'Balatro通关黄金赌注难度技巧分享',en:'Gold Stake Difficulty Tips',exZh:'最高难度黄金赌注通关技巧，永久Debuff应对策略，经济管理心得。',exEn:'Gold Stake strategies. Permanent debuff management. Economy tips for highest difficulty.',detailZh:'<p>黄金赌注会带来永久减益效果。关键是控制卡组规模，尽可能用塔罗牌删除低价值卡牌，保持卡组精炼。</p>',detailEn:'<p>Gold Stake applies permanent debuffs. Key is controlling deck size — use Tarot cards to remove low-value cards and keep deck lean.</p>'},
+            ]}
+        ]
+    },
+    // ========= 吸血鬼幸存者 =========
+    {
+        id:'vampireSurvivors', emoji:'🧛',
+        zh:'吸血鬼幸存者', en:'Vampire Survivors',
+        cat:'roguelike', catZh:'肉鸽卡牌', catEn:'Roguelike Cards',
+        descZh:'极简操作的Roguelike生存射击，自动攻击+走位即可享受割草快感。海量武器进化组合，每一局都是全新体验。',
+        descEn:'Minimalist roguelike survival shooter. Auto-attack + dodge for pure mowing satisfaction. Massive weapon evolution combos for every run.',
+        metaZh:['poncle','单机','生存射击','全平台'], metaEn:['poncle','Single Player','Survival Shooter','All Platforms'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'吸血鬼幸存者新手上手指南 前30分钟攻略',en:'First 30 Minutes Beginner Guide',exZh:'游戏基础操作、地图选择、角色解锁顺序、前期金币规划，最快上手路线。',exEn:'Basic controls, map selection, character unlock order, early gold planning.',detailZh:'<p><b>新手必知：</b></p><ul><li>攻击自动进行，你只需移动和走位</li><li>优先解锁第二张地图Inlaid Library，开阔地形更易生存</li><li>前期优先购买Poe(大蒜角色)，AOE清怪效率极高</li><li>武器进化和融合是核心玩法，了解武器+被动物品=超武的合成规则</li></ul>',detailEn:'<p><b>New player essentials:</b></p><ul><li>Attacks are automatic — you only move and dodge</li><li>Unlock Inlaid Library map first for easier survival</li><li>Buy Poe (garlic character) early for best AOE</li><li>Weapon evolution is key — learn weapon + passive = super weapon combos</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'吸血鬼幸存者武器进化合成表 全超武合成公式',en:'Weapon Evolution — All Super Weapon Combos',exZh:'全部武器进化路线图，所需被动物品对应关系，超武合成条件与效果。',exEn:'Complete weapon evolution tree, required passive items, super weapon conditions & effects.',detailZh:'<p><b>经典合成组合：</b></p><ul><li>鞭子 + 空心之心 = 血鞭（吸血）</li><li>大蒜 + 番茄(贪婪) = 灵魂吞噬者（大范围AOE）</li><li>圣水 + 吸引器 = 圣水雨（持续范围伤害）</li><li>魔法棒 + 空卷书 = 圣魔杖（无冷却射击）</li><li>国王圣经 + 拼写器 = 邪恶晚祷（全屏环击）</li></ul><p>武器和被动需升满级+击败10分钟后宝箱Boss才能进化。</p>',detailEn:'<p><b>Classic combos:</b></p><ul><li>Whip + Hollow Heart = Bloody Tear (lifesteal)</li><li>Garlic + Pummarola = Soul Eater (massive AOE)</li><li>Holy Water + Attractorb = La Borra (persistent AOE)</li><li>Magic Wand + Empty Tome = Holy Wand (cooldown-free)</li><li>King Bible + Spellbinder = Unholy Vespers (ring attack)</li></ul>'},
+                {tag:'core',zh:'吸血鬼幸存者强力Build推荐 角色武器搭配指南',en:'Best Builds — Character & Weapon Synergy',exZh:'各角色推荐武器搭配，强力流派组合，诅咒难度冲层Build。',exEn:'Best weapon combos per character. Strong archetypes. Curse difficulty push builds.',detailZh:'<p><b>推荐Build：</b></p><ul><li>⚡ 闪电流：闪电戒指+复制器+护腕，清屏效率最高</li><li>🛡️ 护盾流：月桂+护甲+治愈，极限生存</li><li>🔥 火力流：火杖+菠菜+烛台，单体爆发最强</li></ul>',detailEn:'<p><b>Recommended Builds:</b></p><ul><li>⚡ Lightning: Lightning Ring + Duplicator + Bracer, top screen clear</li><li>🛡️ Shield: Laurel + Armor + Recovery, ultimate survival</li><li>🔥 Firepower: Fire Wand + Spinach + Candelabrador, best single target</li></ul>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'吸血鬼幸存者全隐藏角色及秘密关卡解锁攻略',en:'All Secret Characters & Hidden Stages',exZh:'隐藏角色解锁方法，秘密关卡进入条件，彩蛋揭秘。',exEn:'Secret character unlock methods, hidden stage conditions, easter eggs.',detailZh:'<p>游戏有大量隐藏内容。部分角色需要在地图中找到棺材，部分需要在特定条件下触发特殊事件。隐藏关卡通常需要击败特定Boss或收集特殊物品。</p>',detailEn:'<p>Lots of hidden content. Some characters require finding coffins, others need specific trigger conditions. Hidden stages often require defeating specific bosses or collecting special items.</p>'},
+            ]}
+        ]
+    },
+    // ========= 死亡细胞 =========
+    {
+        id:'deadcells', emoji:'💀',
+        zh:'死亡细胞', en:'Dead Cells',
+        cat:'roguelike', catZh:'肉鸽卡牌', catEn:'Roguelike Cards',
+        descZh:'类银河恶魔城×Roguelike动作神作。死亡即是新的开始，解锁武器、变异、符文，在多变的关卡中战斗到底。',
+        descEn:'Metroidvania × Roguelike action masterpiece. Death is a new beginning — unlock weapons, mutations, runes, and fight through ever-changing levels.',
+        metaZh:['Motion Twin','单机','类银河城','全平台'], metaEn:['Motion Twin','Single Player','Metroidvania','All Platforms'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'死亡细胞新手入门攻略 基础操作与前期路线',en:'Beginner Guide — Basic Controls & Early Routes',exZh:'基础战斗机制、翻滚无敌帧、符文系统介绍、新手推荐路线。',exEn:'Basic combat mechanics, roll invincibility frames, runes system, recommended early routes.',detailZh:'<p><b>核心技巧：</b></p><ul><li>翻滚有无敌帧，是最重要的防御手段</li><li>优先解锁藤蔓符文→传送符文→牧羊符文→蜘蛛符文</li><li>新手推荐：牢房→大道→壁垒→黑桥→雾萦港湾→钟楼→时空室→王手</li><li>不要每关都全清，速度奖励也很重要</li></ul>',detailEn:'<p><b>Core tips:</b></p><ul><li>Roll has invincibility frames — your #1 defense tool</li><li>Unlock runes: Vine → Teleport → Ram → Spider</li><li>Recommended route: Prison → Promenade → Ramparts → Black Bridge → Stilt Village → Clock Tower → Clock Room → Hand of the King</li><li>Speed bonus matters — don\'t full-clear every level</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'死亡细胞武器推荐 Tier排行 红紫绿流Build',en:'Weapon Tier List — Red/Purple/Green Builds',exZh:'红流(暴虐)、紫流(战术)、绿流(生存)最强武器排行及Build搭配。',exEn:'Brutality (red), Tactics (purple), Survival (green) best weapons and builds.',detailZh:'<p><b>三流派推荐：</b></p><ul><li>🔴 <b>暴虐流(红)：</b>对称长枪、油腻之剑、步兵短弓，高攻速近战</li><li>🟣 <b>战术流(紫)：</b>电鞭、冰霜爆破、多头弓，远程风筝</li><li>🟢 <b>生存流(绿)：</b>巨镰、冰盾、爆炸十字弓，重击大范围</li></ul><p>推荐新手从绿流开始，容错率高。高手可尝试红流极限输出。</p>',detailEn:'<p><b>Three styles:</b></p><ul><li>🔴 <b>Brutality:</b> Symmetrical Lance, Oiled Sword, Infantry Bow — fast melee</li><li>🟣 <b>Tactics:</b> Electric Whip, Ice Blast, Multi-nocks Bow — ranged kiting</li><li>🟢 <b>Survival:</b> Giantkiller, Ice Shield, Explosive Crossbow — heavy AOE</li></ul><p>Beginners should start with Survival for survivability. Experts try Brutality max DPS.</p>'},
+                {tag:'core',zh:'死亡细胞全BOSS打法攻略 各Boss弱点与应对',en:'All Boss Guide — Weaknesses & Strategies',exZh:'看守者、时光守护者、巨人、王手、收藏家等全Boss招式拆解。',exEn:'Concierge, Time Keeper, Giant, HotK, Collector — all boss patterns broken down.',detailZh:'<p><b>主要Boss对策：</b></p><ul><li>🛡️ <b>看守者：</b>红圈无敌状态绕后攻击，小心跳砸AOE</li><li>⏱️ <b>时光守护者：</b>高攻速Boss，需要精准翻滚，注意勾爪</li><li>💪 <b>巨人：</b>先打双手再打眼睛，注意激光和拳击节奏</li></ul>',detailEn:'<p><b>Boss strategies:</b></p><ul><li>🛡️ <b>Concierge:</b> Attack from behind during red aura invincibility, dodge slam AOE</li><li>⏱️ <b>Time Keeper:</b> Fast boss — precise rolls needed, watch for hook</li><li>💪 <b>Giant:</b> Destroy hands first then eye, watch laser and punch patterns</li></ul>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'死亡细胞5细胞难度通关攻略 咒刀流详解',en:'5BC Guide — Cursed Sword Build',exZh:'最高难度5细胞通关技巧，咒刀无伤流Build配置，DLC新增内容一览。',exEn:'5 Boss Cells strategies. Cursed Sword hitless build. DLC content overview.',detailZh:'<p>5BC难度极高，被击中一次就死。咒刀流要求无伤通关但伤害极高。需要熟练掌握所有敌人攻击模式。</p>',detailEn:'<p>5BC is extremely punishing — one hit kills. Cursed Sword build requires hitless play but deals massive damage. Must master all enemy patterns.</p>'},
+            ]}
+        ]
+    },
+
     // ========= 暖雪 =========
     {
         id:'warmSnow', emoji:'❄️',
@@ -563,6 +629,288 @@ const gameData = [
             ]}
         ]
     }
+    // ========= 神之亵渎 =========
+    {
+        id:'blasphemous', emoji:'😇',
+        zh:'神之亵渎', en:'Blasphemous',
+        cat:'rpg', catZh:'RPG动作', catEn:'Action RPG',
+        descZh:'暗黑宗教画风魂系横版ARPG，在扭曲的圣地中挥舞Mea Culpa之剑，斩杀异端怪物。高难度战斗、精致像素美术。',
+        descEn:'Dark religious pixel-art souls-like ARPG. Wield the Mea Culpa sword through twisted holy lands, slaying heretic monsters. Brutal combat meets exquisite pixel art.',
+        metaZh:['The Game Kitchen','单机','魂系横版','全平台'], metaEn:['The Game Kitchen','Single Player','Souls-like','All Platforms'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'神之亵渎新手入门攻略 基础操作与战斗技巧',en:'Blasphemous Beginner Guide — Basics & Combat',exZh:'基础操作、弹反和闪避时机、罪孽系统、赎罪机制、新手注意事项。',exEn:'Basic controls, parry/dodge timing, guilt system, atonement mechanics, new player tips.',detailZh:'<p><b>核心机制：</b></p><ul><li>弹反(抵挡)是核心防御手段，成功后反击伤害极高</li><li>死亡留下罪孽碎片，减少狂热值上限，必须捡回或去赎罪雕像赎罪</li><li>处决技可回血，尽量多用</li><li>探索是关键，很多隐藏区域藏有重要道具</li></ul>',detailEn:'<p><b>Core mechanics:</b></p><ul><li>Parry (block) is your #1 defense — counterattack deals massive damage</li><li>Death leaves guilt fragment reducing max fervor — retrieve or atone at statues</li><li>Executions heal — use them often</li><li>Exploration is key — many hidden areas with important items</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'神之亵渎全收集攻略 祷文圣物剑心位置',en:'Complete Collection — Prayers, Relics, Sword Hearts',exZh:'全部祷文、圣物、剑心收集位置，隐藏区域入口指引，关键道具获取方法。',exEn:'All prayers, relics, sword hearts locations. Hidden area entrances. Key item acquisition.',detailZh:'<p>收集品分散在整个地图中。剑心改变Mea Culpa的弹反和攻击属性，圣物提供被动效果，祷文消耗狂热释放技能。</p>',detailEn:'<p>Collectibles are scattered across the map. Sword Hearts modify Mea Culpa parry/attack, Relics give passives, Prayers consume fervor for skills.</p>'},
+                {tag:'core',zh:'神之亵渎全BOSS攻略 各Boss打法与弱点',en:'All Boss Guide — Patterns & Weaknesses',exZh:'从第一个Boss到最终Boss的完整打法，招数拆解，流派推荐（流血流、盾反流）。',exEn:'Full boss guide from first to final. Attack pattern breakdowns. Build recommendations (bleed, parry).',detailZh:'<p><b>关键Boss：</b></p><ul><li>⚔️ Ten Piedad: 新手教学Boss，练习弹反的大好机会</li><li>👶 Tres Angustias: 三姐妹，注意分身的攻击节奏</li><li>🦴 Esdras: 高伤害Boss，弹反+躲避是关键</li><li>👑 最终Boss: 多阶段战斗，推荐流血Build持续输出</li></ul>',detailEn:'<p><b>Key Bosses:</b></p><ul><li>⚔️ Ten Piedad: Tutorial boss — great parry practice</li><li>👶 Tres Angustias: Three sisters — watch clone attack patterns</li><li>🦴 Esdras: High damage boss — parry + dodge essential</li><li>👑 Final Boss: Multi-phase — bleed build for sustained damage</li></ul>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'神之亵渎多结局触发条件 真结局达成攻略',en:'Multiple Endings — True Ending Guide',exZh:'A结局与B结局触发条件，真结局所需的所有前置条件，关键道具获取。',exEn:'Ending A vs B triggers. All prerequisites for true ending. Key item acquisition.',detailZh:'<p>神之亵渎有多个结局。真结局(Ending C/DLC)需要完成一系列隐藏任务和Boss战。关键是不能在特定节点做错误选择。</p>',detailEn:'<p>Blasphemous has multiple endings. The true ending requires completing hidden quests and bosses. Key is not making wrong choices at critical points.</p>'},
+            ]}
+        ]
+    },
+    // ========= 时空之轮 =========
+    {
+        id:'chrono', emoji:'⏳',
+        zh:'时空之轮', en:'Chrono Trigger',
+        cat:'rpg', catZh:'RPG动作', catEn:'Action RPG',
+        descZh:'JRPG史上最伟大的经典之一，穿越时空拯救世界。多结局、合体技系统、即时战斗，定义了日式RPG的黄金时代。',
+        descEn:'One of the greatest JRPGs ever made. Time-travel to save the world. Multiple endings, dual/triple techs, real-time combat — the golden age of JRPGs defined.',
+        metaZh:['Square Enix','单机','经典JRPG','全平台'], metaEn:['Square Enix','Single Player','Classic JRPG','All Platforms'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'时空之轮新手攻略 剧情流程与关键选择',en:'Chrono Trigger Beginner Guide — Story & Key Choices',exZh:'主线流程完整攻略，各时代关键节点，队伍角色加入条件，合体技基础。',exEn:'Complete story walkthrough, key era milestones, character recruitment, dual/triple tech basics.',detailZh:'<p><b>游戏特色：</b></p><ul><li>穿越7个时代（史前→未来），改变历史影响后续</li><li>共12个以上结局，取决于最终Boss挑战时机和选择</li><li>合体技系统：2-3个角色联合释放强力技能</li><li>敌人可视化，进入战斗无需切换场景</li></ul>',detailEn:'<p><b>Game features:</b></p><ul><li>Travel through 7 eras (prehistory→future), changing history changes outcomes</li><li>12+ endings depending on when you challenge the final boss</li><li>Dual/Triple Techs: 2-3 party members combine for powerful attacks</li><li>Enemies visible on map — no random encounters</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'时空之轮全结局触发条件攻略',en:'All Endings — Complete Trigger Guide',exZh:'12+结局触发条件和时间点，最强装备所在位置，隐藏Boss解锁方法。',exEn:'12+ ending triggers and timing. Best equipment locations. Hidden boss unlock methods.',detailZh:'<p><b>部分结局触发条件：</b></p><ul><li>标准结局：正常通关</li><li>青蛙结局：特定剧情后直接挑战最终Boss</li><li>开发者结局：第一次就能挑战Lavos？</li><li>新游戏+结局：二周目在不同时间点击败Lavos触发不同结局</li></ul><p>最强武器（彩虹剑）需在远古时代完成特定任务链。</p>',detailEn:'<p><b>Some ending triggers:</b></p><ul><li>Standard: Normal clear</li><li>Frog: Challenge Lavos right after specific story moment</li><li>Developer Ending: Can you beat Lavos on first encounter?</li><li>New Game+: Different timing of beating Lavos = different endings</li></ul><p>Rainbow Sword (best weapon) requires specific quest chain in Prehistory.</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'时空之轮隐藏Boss与超级装备获取指南',en:'Hidden Bosses & Ultimate Equipment',exZh:'Spekkio全形态攻略、Nu变身触发、彩虹剑获得、魔神器收集。',exEn:'Spekkio all forms guide, Nu transformation, Rainbow Sword, ultimate gear.',detailZh:'<p>隐藏内容极其丰富。Spekkio的形态随队伍等级变化，最高形态（粉色Nu）掉落最强装备。彩虹剑是最强武器之一。</p>',detailEn:'<p>Hidden content is abundant. Spekkio form changes with party level — highest form drops best gear. Rainbow Sword is among the ultimate weapons.</p>'},
+            ]}
+        ]
+    },
+    // ========= 最终幻想像素重制版 =========
+    {
+        id:'ffpr', emoji:'✨',
+        zh:'最终幻想像素重制版', en:'Final Fantasy Pixel Remaster (I~VI)',
+        cat:'rpg', catZh:'RPG动作', catEn:'Action RPG',
+        descZh:'经典FF1~6的重制合集，原汁原味的像素画风搭配重编交响乐。6部传奇RPG一次体验，每部都有独立完整的攻略体系。',
+        descEn:'Classic FF1-6 remastered collection. Original pixel art with rearranged orchestral soundtrack. 6 legendary RPGs in one — each with its own complete guide ecosystem.',
+        metaZh:['Square Enix','单机','经典重制','移动端/PC'], metaEn:['Square Enix','Single Player','Classic Remake','Mobile/PC'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'最终幻想像素重制版系列入坑指南 1-6代顺序推荐',en:'FF Pixel Remaster Play Order Guide',exZh:'6代作品特点对比，推荐入坑顺序，每代核心玩法介绍，移动端优化说明。',exEn:'FF1-6 comparison, recommended play order, core features per game, mobile optimization notes.',detailZh:'<p><b>推荐入坑顺序：</b></p><ul><li>🎮 新手友好：FF4 → FF6 → FF5 → FF1 → FF3 → FF2</li><li>🎮 按经典度：FF6 → FF4 → FF5 → FF3 → FF1 → FF2</li><li>FF6是全系列公认巅峰，剧情、角色、系统都极为出色</li></ul><p><b>各代简介：</b>FF1（开山之作）、FF2（技能成长制）、FF3（首款职业系统）、FF4（ATB战斗）、FF5（职业自由搭配）、FF6（魔石系统+14人阵容）</p>',detailEn:'<p><b>Recommended order:</b></p><ul><li>🎮 Beginner-friendly: FF4 → FF6 → FF5 → FF1 → FF3 → FF2</li><li>🎮 Classic ranking: FF6 → FF4 → FF5 → FF3 → FF1 → FF2</li><li>FF6 is universally praised as the peak — story, characters, systems all exceptional</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'最终幻想1-6全职业系统介绍 职业搭配推荐',en:'Job Systems Guide — All Jobs & Synergies',exZh:'FF1/3/5职业系统详解，各职业特点，最强职业推荐，团队配置建议。',exEn:'FF1/3/5 job systems explained. Job features, best setups, recommended party configurations.',detailZh:'<p><b>FF5职业搭配推荐：</b></p><ul><li>骑士+二刀流(忍者技能) = 物理输出天花板</li><li>黑魔法师+追加魔法×2(赤魔法师技能) = 最强法师</li><li>白魔法师+MP减半(召唤师技能) = 高效治疗</li><li>青魔法师学习所有怪物技能 = 多功能型</li></ul><p>FF3推荐初期战士+黑魔+白魔+盗贼，后期可转忍者+贤者。</p>',detailEn:'<p><b>FF5 job combos:</b></p><ul><li>Knight + Dual Wield (Ninja ability) = Physical damage ceiling</li><li>Black Mage + Dualcast (Red Mage ability) = Ultimate caster</li><li>White Mage + Half MP (Summoner ability) = Efficient healer</li><li>Blue Mage learns all monster skills = Versatile role</li></ul>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'最终幻想像素重制版全隐藏要素 彩色装备与隐藏Boss',en:'Hidden Content — Ultimate Weapons & Secret Bosses',exZh:'FF1-6各代隐藏装备获取方法，隐藏Boss位置，彩蛋要素一网打尽。',exEn:'FF1-6 hidden equipment locations, secret boss spawns, easter eggs uncovered.',detailZh:'<p>每代都有大量隐藏内容：FF6的饰物塔和魂之祠、FF5的神龙和欧米茄、FF4的试炼之山等，是核心玩家的最终目标。</p>',detailEn:'<p>Each title has extensive hidden content: FF6\'s Soul Shrine, FF5\'s Shinryu & Omega, FF4\'s Lunar Ruins — the ultimate goal for dedicated players.</p>'},
+            ]}
+        ]
+    },
+    // ========= 奥尼罗 =========
+    {
+        id:'oniro', emoji:'🌑',
+        zh:'奥尼罗', en:'Oniro',
+        cat:'rpg', catZh:'RPG动作', catEn:'Action RPG',
+        descZh:'2025年暗黑类ARPG新秀，12种转职自由搭配，天赋树深度养成，装备词缀打造独属BD。海外口碑扎实，国内攻略稀缺。',
+        descEn:'2025 dark ARPG rising star. 12 advanced classes, deep talent trees, equipment affix crafting for unique builds. Solid overseas reputation, minimal Chinese guides.',
+        metaZh:['新锐工作室','单机/在线','暗黑类','移动端/PC'], metaEn:['Indie Studio','Single/Online','Diablo-like','Mobile/PC'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'奥尼罗新手入门攻略 职业选择与开荒推荐',en:'Oniro Beginner Guide — Class Choice & Leveling',exZh:'初始职业选择建议，各职业特点分析，新手开荒最佳路线，前期资源规划。',exEn:'Starting class recommendations, class analysis, best leveling route, early resource planning.',detailZh:'<p><b>新手推荐职业：</b></p><ul><li>战士系：骑士>狂战士，高生存低操作难度</li><li>法师系：元素师>暗术师，远程AOE安全开荒</li><li>游侠系：枪手>陷阱师，灵活机动好上手</li></ul><p>新手建议先走坦克或远程路线，熟悉副本机制后再尝试近战输出。</p>',detailEn:'<p><b>Recommended for beginners:</b></p><ul><li>Warrior: Knight > Berserker, high survival, low skill floor</li><li>Mage: Elementalist > Warlock, ranged AOE safe leveling</li><li>Ranger: Gunslinger > Trapper, mobile and easy</li></ul><p>New players should try tank or ranged first. Learn dungeon mechanics before melee DPS.</p>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'奥尼罗全职业天赋加点推荐 12转职BD构建',en:'All Class Talent Builds — 12 Job BD Guide',exZh:'12种转职职业天赋树最优加点方案，装备词缀搭配推荐，各流派BD构建。',exEn:'Optimal talent builds for all 12 jobs. Equipment affix combos. Archetype BD construction.',detailZh:'<p><b>热门BD方向：</b></p><ul><li>狂战士：暴击+攻速+吸血，近战绞肉机</li><li>元素师：法伤+冷却缩减+回蓝，AOE清场</li><li>圣骑士：防御+反伤+治疗，不死坦克</li><li>暗术师：DOT伤害+诅咒+召唤，持续输出</li></ul><p>每个职业有3条天赋树分支，可混合搭配形成独特风格。</p>',detailEn:'<p><b>Popular BD directions:</b></p><ul><li>Berserker: Crit + Attack Speed + Lifesteal, melee blender</li><li>Elementalist: Spell Dmg + CDR + Mana Regen, AOE mage</li><li>Paladin: Defense + Reflect + Heal, immortal tank</li><li>Warlock: DOT + Curse + Summon, sustained DPS</li></ul><p>Each job has 3 talent branches — mix and match for unique playstyles.</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'奥尼罗副本刷图路线及装备掉落一览',en:'Dungeon Farming Routes & Loot Table',exZh:'各副本推荐刷图路线，Boss掉落装备表，稀有词缀出处。',exEn:'Best farming routes per dungeon. Boss loot tables. Rare affix sources.',detailZh:'<p>了解每个副本的装备掉落表对于BD构建至关重要。特定词缀只在特定副本掉落，刷图前务必确认。</p>',detailEn:'<p>Knowing dungeon loot tables is crucial for BD building. Specific affixes only drop from specific dungeons — check before farming.</p>'},
+            ]}
+        ]
+    },
+    // ========= 憎恨之心 =========
+    {
+        id:'animus', emoji:'🗡️',
+        zh:'憎恨之心', en:'Animus: Revenant',
+        cat:'rpg', catZh:'RPG动作', catEn:'Action RPG',
+        descZh:'移动端原生高品质魂系动作RPG。硬核Boss战、深度武器防具Build、属性加点自由搭配，移动端魂类标杆之作。',
+        descEn:'Premium mobile-native souls-like ARPG. Hardcore boss fights, deep weapon/armor builds, free stat allocation — a mobile souls-like benchmark.',
+        metaZh:['TENBIRDS','单机','魂系动作','移动端'], metaEn:['TENBIRDS','Single Player','Souls-like','Mobile'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'憎恨之心新手攻略 属性加点与初期装备推荐',en:'Animus Beginner Guide — Stats & Early Gear',exZh:'力量/敏捷/智力加点建议，初期武器选择，基础战斗技巧，新手常见误区。',exEn:'STR/DEX/INT allocation tips, early weapon choices, basic combat skills, common beginner mistakes.',detailZh:'<p><b>属性加点原则：</b></p><ul><li>力量(STR)：物理攻击+负重，重武器玩家优先</li><li>敏捷(DEX)：攻击速度+暴击，轻武器优先</li><li>智力(INT)：法术伤害+魔法值，法系优先</li><li>体力(VIT)：血量+防御，人均需要投入</li></ul><p>新手建议力敏双修，平衡生存与输出。重甲+中盾是最稳配置。</p>',detailEn:'<p><b>Stat principles:</b></p><ul><li>STR: Physical dmg + weight, heavy weapon priority</li><li>DEX: Attack speed + crit, light weapon priority</li><li>INT: Spell dmg + mana, caster priority</li><li>VIT: HP + defense, everyone needs this</li></ul><p>New players: balanced STR/DEX. Heavy armor + medium shield = safest setup.</p>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'憎恨之心全Boss打法攻略 招式拆解与应对',en:'All Boss Guide — Patterns & Counters',exZh:'每个Boss的详细打法，攻击前摇识别，最佳反击窗口，推荐装备搭配。',exEn:'Detailed boss strategies, attack telegraphs, optimal counter windows, recommended gear.',detailZh:'<p>魂系游戏的核心就是背板，每个Boss的攻击模式都是固定的。了解招式前摇、精确闪避、在安全窗口反击是制胜关键。</p>',detailEn:'<p>The core of souls-likes is pattern recognition. Each boss has fixed attack patterns. Learn telegraphs, precise dodges, and counter in safe windows.</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'憎恨之心全地图收集攻略 隐藏区域与道具',en:'Complete Collection — Hidden Areas & Items',exZh:'全地图隐藏区域入口，特殊武器/防具获取方法，全收集要素汇总。',exEn:'All hidden area entrances, special weapon/armor locations, complete collection checklist.',detailZh:'<p>魂系传统：隐藏墙壁、假门、跳崖捷径等。每张地图都有2-3处隐藏区域，藏着强力装备和关键道具。</p>',detailEn:'<p>Souls-like tradition: hidden walls, false doors, cliff shortcuts. Every map has 2-3 hidden areas with powerful gear and key items.</p>'},
+            ]}
+        ]
+    },
+    // ========= 荒野大镖客：救赎 =========
+    {
+        id:'rdr', emoji:'🤠',
+        zh:'荒野大镖客：救赎', en:'Red Dead Redemption',
+        cat:'rpg', catZh:'RPG动作', catEn:'Action RPG',
+        descZh:'西部开放世界动作冒险经典，Netflix Games移动端完整移植。主线+海量支线+收集要素，荣誉系统影响剧情走向。',
+        descEn:'Western open-world action-adventure classic, full mobile port via Netflix Games. Main story + massive side content + collectibles. Honor system changes story outcomes.',
+        metaZh:['Rockstar','单机','开放世界','移动端(NG)'], metaEn:['Rockstar','Single Player','Open World','Mobile (NG)'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'荒野大镖客救赎新手攻略 主线流程与前期发展',en:'RDR Beginner Guide — Story & Early Progression',exZh:'主线任务流程，前期必做的支线，荣誉系统介绍，发财致富的早期方法。',exEn:'Main story walkthrough, essential early side quests, honor system intro, early money-making.',detailZh:'<p><b>新手必知：</b></p><ul><li>荣誉值影响NPC对John的态度、商店折扣、部分结局</li><li>打猎剥皮出售是前期最好的赚钱方式</li><li>每到一个新城镇先开马车接送点(快速旅行)</li><li>多接陌生人任务，很多支线有时间限定</li></ul>',detailEn:'<p><b>New player tips:</b></p><ul><li>Honor affects NPC attitudes, shop discounts, some endings</li><li>Hunting/skinning is best early money-maker</li><li>Unlock stagecoach (fast travel) at every new town</li><li>Take stranger missions — many are time-limited</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'荒野大镖客救赎全收集攻略 宝藏传奇动物服装',en:'Complete Collection — Treasure, Legendary Animals, Outfits',exZh:'全宝藏地图位置+解法，传奇动物位置及狩猎技巧，全部服装解锁条件。',exEn:'All treasure map locations & solutions. Legendary animal spawns & hunting tips. All outfit unlocks.',detailZh:'<p><b>收集要素：</b></p><ul><li>💰 宝藏：由多张藏宝图逐级指引，最终奖励大量金币</li><li>🐻 传奇动物：每个区域有独特的传奇动物，需要特定策略狩猎</li><li>👔 服装：完成特定挑战解锁，部分服装提供特殊效果</li></ul>',detailEn:'<p><b>Collectibles:</b></p><ul><li>💰 Treasure: Multi-map chain quests, huge gold rewards</li><li>🐻 Legendary Animals: Unique to each region, need specific strategies</li><li>👔 Outfits: Unlock via challenges, some give special effects</li></ul>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'荒野大镖客救赎荣誉系统详解 高/低荣誉路线',en:'Honor System — High vs Low Honor Paths',exZh:'荣誉值获取与降低方式，高低荣誉不同结局，NPC反应变化，特殊服装解锁。',exEn:'How to gain/lose honor. Different endings. NPC reaction changes. Special outfit unlocks.',detailZh:'<p>荣誉值从-1000到+1000。高荣誉路线获得商店折扣、更好的NPC对话；低荣誉路线则有不同剧情走向和某些独占内容。</p>',detailEn:'<p>Honor ranges from -1000 to +1000. High honor = shop discounts, better dialogues. Low honor = different story branches and exclusive content.</p>'},
+            ]}
+        ]
+    },
+    // ========= 瘟疫公司 =========
+    {
+        id:'plagueInc', emoji:'🦠',
+        zh:'瘟疫公司', en:'Plague Inc.',
+        cat:'survival', catZh:'生存建造', catEn:'Survival',
+        descZh:'逆向策略模拟经典，扮演病原体感染全世界。不同病原体各具特色，进化路线决定成功与否。策略深度出人意料。',
+        descEn:'Reverse strategy sim classic — play as a pathogen infecting the world. Each pathogen type unique, evolution paths decide success. Surprisingly deep strategy.',
+        metaZh:['Ndemic Creations','单机','策略模拟','移动端/PC'], metaEn:['Ndemic Creations','Single Player','Strategy Sim','Mobile/PC'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'瘟疫公司新手攻略 基础规则与传播策略',en:'Plague Inc. Beginner Guide — Rules & Spread Strategy',exZh:'游戏基本机制、传播方式与症状的关系，基础进化路线推荐。',exEn:'Basic mechanics, transmission vs symptoms relationship, recommended evolution path.',detailZh:'<p><b>核心原则：</b></p><ul><li>前期隐形传播：先不进化症状，专注传播力</li><li>格陵兰和马达加斯加是最难感染的国家，优先获取传播途径</li><li>症状在感染大多数国家后再进化致命性</li><li>DNA点数有限，传播>抗性>症状</li></ul>',detailEn:'<p><b>Core principles:</b></p><ul><li>Stealth phase: evolve transmission first, no symptoms</li><li>Greenland & Madagascar are hardest — get transmission routes to them early</li><li>Evolve lethality only after most countries infected</li><li>Limited DNA: Transmission > Resistance > Symptoms</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'瘟疫公司各病原体通关攻略 细菌病毒真菌寄生虫',en:'Pathogen Guide — Bacteria, Virus, Fungus, Parasite',exZh:'每种病原体的特点和进化策略，各难度通关技巧，最优基因码选择。',exEn:'Each pathogen type features & evolution strategy. Difficulty tips. Best gene codes.',detailZh:'<p><b>病原体特点：</b></p><ul><li>🦠 细菌：均衡型，新手首选</li><li>🧬 病毒：变异快，难控制但传染强</li><li>🍄 真菌：特殊孢子传播，需要规划</li><li>🪱 寄生虫：低突变，隐蔽性强</li></ul>',detailEn:'<p><b>Pathogen traits:</b></p><ul><li>🦠 Bacteria: Balanced, best for beginners</li><li>🧬 Virus: Fast mutation, hard to control but strong spread</li><li>🍄 Fungus: Special spore spread, needs planning</li><li>🪱 Parasite: Low mutation, high stealth</li></ul>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'瘟疫公司最高难度全通关 特殊场景攻略',en:'Brutal Difficulty & Special Scenarios',exZh:'残酷难度通关技巧，特殊场景（冰河时代、黑死病等）攻略。',exEn:'Brutal difficulty strategies. Special scenarios (Ice Age, Black Death, etc.).',detailZh:'<p>残酷难度下世界对抗措施极快。必须极端化早期策略：完全隐形传播，一鼓作气在解药研发前达到全球感染。</p>',detailEn:'<p>Brutal difficulty has extremely fast countermeasures. Must go extreme: total stealth spread, infect globally before cure research advances.</p>'},
+            ]}
+        ]
+    },
+    // ========= 纪念碑谷3 =========
+    {
+        id:'monumentValley3', emoji:'🏰',
+        zh:'纪念碑谷3', en:'Monument Valley 3',
+        cat:'puzzle', catZh:'解谜平台', catEn:'Puzzle & Platform',
+        descZh:'Netflix独占视觉解谜新作，穿越不可能的几何空间，解开关卡谜题。极简美学，每一帧都是艺术品。2025-2026年系列新章。',
+        descEn:'Netflix-exclusive visual puzzle sequel. Navigate impossible geometry, unravel spatial puzzles. Minimalist aesthetics — every frame is art. 2025-2026 new chapter.',
+        metaZh:['ustwo games','单机','视觉解谜','移动端(NG)'], metaEn:['ustwo games','Single Player','Visual Puzzle','Mobile (NG)'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'纪念碑谷3新手入门攻略 基础操作与视觉逻辑',en:'Monument Valley 3 Beginner Guide — Controls & Visual Logic',exZh:'基础操作方式、视觉错觉利用、旋转机制介绍、新手提示。',exEn:'Basic controls, optical illusion usage, rotation mechanics, beginner tips.',detailZh:'<p><b>核心玩法：</b></p><ul><li>旋转视角创造路径：视觉角度改变空间关系</li><li>拖动角色移动：点击目的地自动寻路</li><li>机关互动：拉杆、旋转台、传送门</li><li>埃舍尔风格：不可能几何是关卡设计的核心</li></ul>',detailEn:'<p><b>Core gameplay:</b></p><ul><li>Rotate to create paths: camera angle changes spatial relationships</li><li>Drag character: tap destination for auto-pathfinding</li><li>Interact mechanisms: levers, rotating platforms, portals</li><li>Escher-esque: Impossible geometry is the design core</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'纪念碑谷3全关卡通关攻略 第1-10章流程',en:'All Levels Walkthrough — Chapters 1-10',exZh:'全部10个章节关卡完整通关步骤截图指引，隐藏关卡解锁条件。',exEn:'Complete walkthrough for all 10 chapters. Hidden level unlock conditions.',detailZh:'<p>每关的核心在于找到正确的旋转角度和机关触发顺序。建议先探索再查攻略，体验解谜乐趣。</p>',detailEn:'<p>Each level\'s core is finding the right rotation angle and mechanism trigger order. Explore first for puzzle enjoyment, then check guides if stuck.</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'纪念碑谷3隐藏关卡与彩蛋全解锁',en:'Hidden Levels & Easter Eggs',exZh:'隐藏关卡解锁方法，系列彩蛋回顾，前作剧情连线。',exEn:'Hidden levels unlock. Series easter eggs. Story connections to previous games.',detailZh:'<p>纪念碑谷系列以隐藏关卡和剧情彩蛋著称。探索每个角落，你会发现前代主角的身影和隐藏的故事线索。</p>',detailEn:'<p>Monument Valley is famous for hidden levels and narrative easter eggs. Explore every corner — you\'ll find previous protagonists and hidden story threads.</p>'},
+            ]}
+        ]
+    },
+    // ========= 蔚蓝 =========
+    {
+        id:'celeste', emoji:'🏔️',
+        zh:'蔚蓝', en:'Celeste',
+        cat:'puzzle', catZh:'解谜平台', catEn:'Puzzle & Platform',
+        descZh:'TGA获奖硬核平台跳跃神作。帮助玛德琳攀登蔚蓝山，主线+B面+C面共700+关卡，极度考验操作与毅力。',
+        descEn:'TGA-winning hardcore platforming masterpiece. Help Madeline climb Celeste Mountain — 700+ levels across A/B/C-sides. Ultimate test of skill and perseverance.',
+        metaZh:['Matt Makes Games','单机','硬核平台','全平台'], metaEn:['Matt Makes Games','Single Player','Hardcore Platformer','All Platforms'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'蔚蓝新手攻略 基础操作与进阶技巧',en:'Celeste Beginner Guide — Basics & Advanced Tech',exZh:'冲刺、攀爬、跳跃基础操作，Wave Dash/Hyper Dash等进阶技巧详解。',exEn:'Dash, climb, jump basics. Wave Dash, Hyper Dash, and other advanced tech explained.',detailZh:'<p><b>核心操作：</b></p><ul><li>空中冲刺(→/↗)：每落地或收集绿钻重置一次</li><li>抓墙：消耗体力，下滑或跳离墙面</li><li>Hyper Dash: 蹲下+冲刺→跳跃 = 长距离水平移动</li><li>Wave Dash: 空中蹲+冲刺到地面+跳跃 = Hyper变形版</li></ul><p>B面/C面几乎要求掌握所有进阶技巧。</p>',detailEn:'<p><b>Core moves:</b></p><ul><li>Air dash: Resets on landing or collecting green diamond</li><li>Wall grab: Consumes stamina, slide or jump off</li><li>Hyper Dash: Crouch + dash → jump = long horizontal boost</li><li>Wave Dash: Air crouch + dash to ground + jump = Hyper variant</li></ul><p>B/C sides require mastering all advanced tech.</p>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'蔚蓝主线1-7章完整通关攻略',en:'Chapters 1-7 Complete Walkthrough',exZh:'每个章节的关键房间解法，隐藏路线，草莓收集位置指引。',exEn:'Key room solutions per chapter. Hidden paths. Strawberry locations guide.',detailZh:'<p>蔚蓝每个章节都有独特的机制主题。第3章（酒店）的灰尘精灵、第5章（镜之寺）的镜像机制、第7章（山顶）是最长最难的章节。</p>',detailEn:'<p>Each chapter has a unique mechanical theme. Chapter 3 (Hotel) dust bunnies, Chapter 5 (Mirror Temple) mirror mechanics, Chapter 7 (Summit) is the longest and hardest.</p>'},
+                {tag:'core',zh:'蔚蓝B面与C面高难关卡通关心得',en:'B-Side & C-Side Strategy Guide',exZh:'B面(8关)和C面(8关)超高难度关卡集中攻略，最难房间逐帧拆解。',exEn:'B-Side (8) & C-Side (8) ultra-hard levels. Frame-by-frame breakdown of hardest rooms.',detailZh:'<p>B面比A面长2-3倍且难度暴涨。C面只有3个房间但极短极难（通常最后一个房间是地狱级）。7C最后房间是最著名的噩梦。</p>',detailEn:'<p>B-Sides are 2-3× longer and much harder than A-Sides. C-Sides have only 3 rooms but are brutally short and difficult (last room is usually hell). 7C\'s final screen is legendary.</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'蔚蓝全收集攻略 草莓+蓝心+磁带位置',en:'Complete Collection — All Strawberries, Hearts, Tapes',exZh:'175颗草莓+8颗蓝心+8盒磁带全收集位置，金草莓获取条件。',exEn:'All 175 strawberries, 8 blue hearts, 8 cassette tapes. Golden strawberry conditions.',detailZh:'<p>全收集是蔚蓝玩家的终极目标。金草莓要求一命通关整章，是最极限的挑战。</p>',detailEn:'<p>100% completion is the ultimate Celeste goal. Golden strawberries require deathless chapter clears — the most extreme challenge.</p>'},
+            ]}
+        ]
+    },
+    // ========= 机械迷城 =========
+    {
+        id:'machinarium', emoji:'🤖',
+        zh:'机械迷城', en:'Machinarium',
+        cat:'puzzle', catZh:'解谜平台', catEn:'Puzzle & Platform',
+        descZh:'手绘蒸汽朋克解谜经典，扮演小机器人拯救女友。全程无文字，纯视觉逻辑推理，画面唯美，谜题巧妙。',
+        descEn:'Hand-drawn steampunk puzzle classic. Play as a little robot saving your girlfriend. No text — pure visual logic. Beautiful art, ingenious puzzles.',
+        metaZh:['Amanita Design','单机','点击解谜','全平台'], metaEn:['Amanita Design','Single Player','Point & Click','All Platforms'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'机械迷城新手攻略 操作方式与解谜逻辑',en:'Machinarium Beginner Guide — Controls & Puzzle Logic',exZh:'点击交互操作方式，解谜逻辑说明，内置提示系统使用，新手建议。',exEn:'Point-and-click controls, puzzle logic, built-in hint system, beginner advice.',detailZh:'<p><b>操作方式：</b></p><ul><li>点击场景中的物品交互</li><li>拖动收集到的道具到目标位置使用</li><li>右上角灯泡=内置提示（需玩小游戏解锁）</li><li>右上角书籍=剧情漫画回顾</li></ul><p>建议先自己思考，实在卡关再用提示。解谜的快感在于灵光一现的瞬间。</p>',detailEn:'<p><b>Controls:</b></p><ul><li>Click items to interact</li><li>Drag collected items to target locations</li><li>Top-right lightbulb = built-in hint (requires mini-game)</li><li>Top-right book = story comic review</li></ul><p>Try to solve yourself first. The joy of puzzle games is in the "aha!" moment.</p>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'机械迷城全关卡谜题解法 完整通关流程',en:'Complete Walkthrough — All Puzzle Solutions',exZh:'从开场到结局的全部谜题解法，关键道具收集与使用顺序。',exEn:'All puzzle solutions from start to ending. Key items collection and usage order.',detailZh:'<p>机械迷城的谜题环环相扣，很多道具需要在不同场景间来回使用。记住每个场景的独特元素是解题关键。</p>',detailEn:'<p>Machinarium puzzles are interlinked — many items need to be used across multiple scenes. Remembering each scene\'s unique elements is key to solving them.</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'机械迷城彩蛋与隐藏内容 全成就攻略',en:'Easter Eggs & Hidden Content — All Achievements',exZh:'游戏中的隐藏互动彩蛋，全成就解锁条件，迷你游戏高分技巧。',exEn:'Hidden interaction easter eggs, all achievement conditions, minigame high score tips.',detailZh:'<p>每个场景都有可互动的背景元素，很多不是解谜必须的但非常有趣。多点点背景中的小物件。</p>',detailEn:'<p>Every scene has interactive background elements — many optional but fun. Click on everything in the background!</p>'},
+            ]}
+        ]
+    },
+    // ========= GRIS =========
+    {
+        id:'gris', emoji:'🎨',
+        zh:'GRIS', en:'GRIS',
+        cat:'puzzle', catZh:'解谜平台', catEn:'Puzzle & Platform',
+        descZh:'水彩画风叙事解谜神作，美术登峰造极。女孩穿越悲伤的五个阶段，每一帧都是壁纸，音乐与画面完美融合。',
+        descEn:'Watercolor narrative puzzle masterpiece with sublime art. A girl journeys through five stages of grief. Every frame a wallpaper, music and visuals in perfect harmony.',
+        metaZh:['Nomada Studio','单机','叙事解谜','全平台'], metaEn:['Nomada Studio','Single Player','Narrative Puzzle','All Platforms'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'GRIS新手攻略 操作方式与色彩机制',en:'GRIS Beginner Guide — Controls & Color Mechanics',exZh:'基础移动跳跃操作、色彩解锁机制、各章节主题概述。',exEn:'Basic movement/jump controls, color unlocking mechanics, chapter themes overview.',detailZh:'<p><b>核心机制：</b></p><ul><li>游戏随进度解锁新色彩（灰→红→绿→蓝→黄）</li><li>每种颜色解锁新能力和新区域</li><li>没有死亡惩罚，纯体验型解谜平台游戏</li><li>画面和音乐是核心体验，建议戴耳机游玩</li></ul>',detailEn:'<p><b>Core mechanics:</b></p><ul><li>Colors unlock as you progress (gray→red→green→blue→yellow)</li><li>Each color unlocks new abilities and areas</li><li>No death penalty — pure experiential puzzle platformer</li><li>Visuals and music are central — play with headphones</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'GRIS全收集攻略 记忆碎片位置一览',en:'Complete Collection — All Memento Locations',exZh:'全章节记忆碎片收集位置，隐藏区域入口指引，全成就达成方法。',exEn:'All memento locations per chapter. Hidden area entrances. All achievement methods.',detailZh:'<p>每个章节散布着需要收集的记忆碎片（Memento），共40个。收集全部解锁隐藏结局彩蛋。</p>',detailEn:'<p>Each chapter has scattered Mementos to collect — 40 total. Finding all unlocks a hidden ending easter egg.</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'GRIS剧情深度解析 悲伤五阶段与色彩象征',en:'Story Deep Dive — Five Stages of Grief & Color Symbolism',exZh:'剧情内涵解析，红绿蓝黄各色象征意义，结局解读，艺术风格赏析。',exEn:'Story analysis. Color symbolism (red/green/blue/yellow). Ending interpretation. Art style appreciation.',detailZh:'<p>GRIS的西语标题意为"灰色"，代表悲伤。五个色彩阶段对应悲伤的五个阶段：否认、愤怒、讨价还价、抑郁、接受。</p>',detailEn:'<p>GRIS means "gray" in Spanish, representing grief. The five color stages mirror the five stages of grief: denial, anger, bargaining, depression, acceptance.</p>'},
+            ]}
+        ]
+    },
+    // ========= Mini Metro / Mini Motorways =========
+    {
+        id:'minimetro', emoji:'🚇',
+        zh:'迷你地铁 / 迷你公路', en:'Mini Metro / Mini Motorways',
+        cat:'casual', catZh:'休闲策略', catEn:'Casual Strategy',
+        descZh:'极简线路规划模拟，设计城市地铁/公路网络。看似休闲实则烧脑，高分追求永无止境。获得多项独立游戏大奖。',
+        descEn:'Minimalist transit planning sim. Design metro/road networks for growing cities. Deceptively relaxing — infinitely deep strategy. Multiple indie game awards.',
+        metaZh:['Dinosaur Polo Club','单机','策略模拟','移动端/PC'], metaEn:['Dinosaur Polo Club','Single Player','Strategy Sim','Mobile/PC'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'Mini Metro新手攻略 线路规划基础与界面说明',en:'Mini Metro Beginner Guide — Line Planning Basics',exZh:'游戏界面说明、基础线路规划原则、车站类型介绍、前期发展策略。',exEn:'Interface guide, basic line planning principles, station types, early game strategy.',detailZh:'<p><b>基础原则：</b></p><ul><li>同色线路连接同形状车站（圆圈=○、三角=△、方=□）</li><li>避免过多车站挤在一条线路上</li><li>环形线比直线效率高</li><li>隧道/桥梁数量有限，合理分配穿越水域</li></ul>',detailEn:'<p><b>Basic principles:</b></p><ul><li>Connect same-shape stations (circle=○, triangle=△, square=□)</li><li>Avoid too many stations on one line</li><li>Loop lines more efficient than straight lines</li><li>Limited tunnels/bridges — plan water crossings carefully</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'Mini Metro高分攻略 各城市地图技巧',en:'High Score Guide — Per Map Strategies',exZh:'15+城市地图专属策略，极端高分期线路设计，机车和车厢分配技巧。',exEn:'15+ city-specific strategies. Extreme rush hour line designs. Locomotive & carriage allocation.',detailZh:'<p><b>各城市要点：</b></p><ul><li>伦敦：泰晤士河分隔，隧道是关键</li><li>巴黎：密集型城区，环形线为主</li><li>大阪：新干线穿越，长途快速通道</li><li>纽约：多条水道，需要大量隧道规划</li></ul>',detailEn:'<p><b>City highlights:</b></p><ul><li>London: Thames divider — tunnels are key</li><li>Paris: Dense urban layout — loop lines preferred</li><li>Osaka: Bullet train crossing — long express corridors</li><li>New York: Multiple waterways — heavy tunnel planning needed</li></ul>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'Mini Motorways入门及进阶技巧 公路规划心得',en:'Mini Motorways — Road Planning Master Tips',exZh:'交通灯使用时机、高速路规划、圆盘效率最大化、各模式挑战攻略。',exEn:'Traffic light timing, highway planning, roundabout efficiency, mode-specific challenges.',detailZh:'<p>Mini Motorways是Mini Metro的公路版续作。交通灯的合理使用和高速路规划是高分关键。不要把红绿灯放在高流量路口！</p>',detailEn:'<p>Mini Motorways is the road-based sequel. Smart traffic light usage and highway planning are key to high scores. Never put traffic lights at high-traffic intersections!</p>'},
+            ]}
+        ]
+    },
+    // ========= 植物大战僵尸2 国际版 =========
+    {
+        id:'pvz2', emoji:'🌻',
+        zh:'植物大战僵尸2 国际版', en:'Plants vs. Zombies 2 (International)',
+        cat:'casual', catZh:'休闲策略', catEn:'Casual Strategy',
+        descZh:'国民级塔防IP，国际版单机内容完整。海量植物+僵尸图鉴，无尽模式挑战极限，各世界特色机制丰富。',
+        descEn:'National treasure TD IP. International version with complete offline content. Massive plant + zombie roster, endless mode challenges, rich world-specific mechanics.',
+        metaZh:['PopCap/EA','单机','塔防','移动端'], metaEn:['PopCap/EA','Single Player','Tower Defense','Mobile'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'植物大战僵尸2国际版新手攻略 基础玩法与植物推荐',en:'PvZ2 Beginner Guide — Basics & Plant Picks',exZh:'游戏基本机制、阳光管理、前期必解锁植物、各世界推荐推图顺序。',exEn:'Basic mechanics, sun management, essential early plants, recommended world order.',detailZh:'<p><b>推图顺序建议：</b></p><ul><li>古埃及→海盗海→狂野西部→未来世界→黑暗时代</li><li>优先升级向日葵(阳光产量)和豌豆射手</li><li>每个世界有独特的机制需要适应</li><li>金币用于购买植物食物槽和升级</li></ul>',detailEn:'<p><b>Recommended world order:</b></p><ul><li>Ancient Egypt→Pirate Seas→Wild West→Far Future→Dark Ages</li><li>Upgrade Sunflower (production) and Peashooter first</li><li>Each world has unique mechanics to adapt to</li><li>Coins for plant food slots and upgrades</li></ul>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'植物大战僵尸2最强阵容推荐 各世界通关搭配',en:'Best Lineups — Per World Team Comps',exZh:'每个世界推荐植物阵容，无尽模式最佳配置，特殊关卡阵容调整。',exEn:'Recommended plant lineups per world. Best endless mode setups. Special level adjustments.',detailZh:'<p><b>通用强力阵容：</b></p><ul><li>前排：坚果墙+甜菜护卫</li><li>输出：激光豆+火龙草+椰子炮</li><li>辅助：向日葵+金盏花(额外阳光)</li><li>控场：冰西瓜+弹簧豆</li></ul><p>具体阵容需根据关卡僵尸类型调整。</p>',detailEn:'<p><b>General strong lineup:</b></p><ul><li>Front: Wall-nut + Chard Guard</li><li>DPS: Laser Bean + Snapdragon + Coconut Cannon</li><li>Support: Sunflower + Marigold (bonus sun)</li><li>Control: Winter Melon + Spring Bean</li></ul><p>Adjust per level zombie types.</p>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'植物大战僵尸2无尽模式通关指南 植物搭配与阵型',en:'Endless Mode Guide — Plant Combos & Formations',exZh:'无尽模式最佳阵型设计，僵尸波次应对，植物食物使用时机。',exEn:'Best endless formations. Zombie wave counterplay. Plant food timing strategies.',detailZh:'<p>无尽模式后期僵尸密度极高，需要高效的AOE和控制链。金盏花+双头向日葵提供经济基础，冰系植物和爆炸植物负责清场。</p>',detailEn:'<p>Late endless has extreme zombie density — needs efficient AOE and control chain. Marigold + Twin Sunflower for economy, ice plants + explosives for clearing.</p>'},
+            ]}
+        ]
+    },
+    // ========= 阿尔托的奥德赛 =========
+    {
+        id:'altosOdyssey', emoji:'🏂',
+        zh:'阿尔托的奥德赛', en:'Alto\'s Odyssey',
+        cat:'casual', catZh:'休闲策略', catEn:'Casual Strategy',
+        descZh:'唯美沙丘跑酷，穿越沙漠、峡谷、神殿。极简操作高上限，收集要素丰富，禅意体验减压神器。长尾流量稳定。',
+        descEn:'Beautiful dune runner through deserts, canyons, and temples. Simple controls, high skill ceiling. Rich collectibles, zen experience. Steady long-tail traffic.',
+        metaZh:['Snowman','单机','无尽跑酷','移动端'], metaEn:['Snowman','Single Player','Endless Runner','Mobile'],
+        tabs:[
+            {id:'beginner',zh:'入门必更',en:'Starter Guides',articles:[
+                {tag:'beginner',zh:'阿尔托的奥德赛新手攻略 基础操作与技巧',en:'Alto\'s Odyssey Beginner Guide — Basics & Tricks',exZh:'跳跃、空翻、滑翔、墙壁骑行操作详解，基础连招技巧，收集品介绍。',exEn:'Jump, flip, glide, wall ride controls. Basic combo tricks. Collectible overview.',detailZh:'<p><b>核心操作：</b></p><ul><li>点击：跳跃</li><li>长按：后空翻（增加分数和速度）</li><li>接近墙壁：自动墙壁骑行</li><li>滑翔翼：空中再点击展开，长按维持</li></ul><p>连击系统是本作核心：连续完成动作在落地前衔接下一个即可保持Combo。</p>',detailEn:'<p><b>Core controls:</b></p><ul><li>Tap: Jump</li><li>Hold: Backflip (increases score + speed)</li><li>Near walls: auto wall-ride</li><li>Wingsuit: tap again in air to deploy, hold to maintain</li></ul><p>Combo system is key: chain actions before landing to maintain your combo multiplier.</p>'},
+            ]},
+            {id:'core',zh:'核心攻略',en:'Core Guides',articles:[
+                {tag:'core',zh:'阿尔托的奥德赛高分技巧 连击系统详解',en:'High Score Guide — Combo System Mastery',exZh:'Combo维持技巧、高分段策略、特殊地形利用、道具使用时机。',exEn:'Combo maintenance tricks, high-score strategies, terrain abuse, item timing.',detailZh:'<p><b>高分核心：</b></p><ul><li>始终维持连击，落地前必然衔接新动作</li><li>墙壁骑行时间越长分越高</li><li>滑翔翼配合气球可长时间滞空</li><li>夜间的灯笼虫追逐可大幅加分</li></ul>',detailEn:'<p><b>Scoring core:</b></p><ul><li>Always maintain combo — chain before landing</li><li>Longer wall rides = higher score</li><li>Wingsuit + hot air balloons for extended air time</li><li>Night lantern bugs give huge score bonuses</li></ul>'},
+            ]},
+            {id:'longtail',zh:'长尾问题',en:'Advanced Topics',articles:[
+                {tag:'longtail',zh:'阿尔托的奥德赛全收集攻略 角色与隐藏区域',en:'Complete Collection — Characters & Hidden Areas',exZh:'全部角色解锁条件，隐藏神庙区域进入方法，全成就达成指南。',exEn:'All character unlock conditions. Hidden temple entrances. All achievement guide.',detailZh:'<p>游戏共有6位角色，每位角色有独特的能力和挑战目标。隐藏神庙区域藏在沙漠深处，需要特定条件触发。</p>',detailEn:'<p>6 characters total, each with unique abilities and challenge goals. Hidden temple areas are deep in the desert — need specific triggers to access.</p>'},
+            ]}
+        ]
+    },
 ];
 
 // ==================== RENDER ====================
@@ -579,10 +927,14 @@ const $searchInput = document.getElementById('searchInput');
 // Build sidebar nav
 function buildSidebar() {
     const cats = [
+        {id:'roguelike', zh:'肉鸽卡牌', en:'Roguelike & Cards', icon:'🃏'},
+        {id:'rpg', zh:'RPG动作', en:'Action RPG', icon:'⚔️'},
         {id:'sim', zh:'模拟经营', en:'Simulation', icon:'🏭'},
         {id:'survival', zh:'生存建造', en:'Survival & Build', icon:'🏕️'},
+        {id:'puzzle', zh:'解谜平台', en:'Puzzle & Platform', icon:'🧩'},
         {id:'sandbox', zh:'沙盒冒险', en:'Sandbox Adventure', icon:'🌍'},
-        {id:'chinese', zh:'国风单机', en:'Chinese RPG', icon:'🏮'}
+        {id:'chinese', zh:'国风单机', en:'Chinese RPG', icon:'🏮'},
+        {id:'casual', zh:'休闲策略', en:'Casual & Strategy', icon:'🎯'}
     ];
 
     let html = '';
